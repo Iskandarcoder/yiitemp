@@ -1,0 +1,71 @@
+
+.vibor h5{
+    text-align: center;
+    color: #52adc7;
+    font: 24px plumbbold;
+    margin: 20px!important;
+}
+
+.k-uslugi{
+    margin-top: 20px;
+    list-style: outside none none;
+}
+
+@media (min-width: 992px) {
+    .col-md-offset-1-and-half {
+        margin-left: 12.499999995%; // col-md-offset-1 has 8.33333333
+        // so you multiply 8.33333333 * 1.5 = 12.499999995%
+    }
+}
+
+.btn-label {
+    position: relative;
+    display: inline-block;
+    padding: 20px 12px;
+  
+    border-radius: 3px 0 0 3px;
+    float: left;
+
+}
+.btn-labeled {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.btn { 
+    margin-bottom:30px; 
+    width: 100%;
+    padding-left: 0!important;
+    text-align: center;
+    position: relative;
+    }
+    .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color:#349bb9;
+  border-radius: 6px;
+}
+
+.btn:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+/*.k-uslugi .btn-info{
+    background-color: #596fa6!important;
+    border-color: white!important;
+}*/

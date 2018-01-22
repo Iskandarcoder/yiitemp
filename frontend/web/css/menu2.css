@@ -1,0 +1,18 @@
+#menu{
+    width: 100%;
+           }
+#menu a{
+    font: 16px "Trebuchet MS", tahoma, verdana, arial narrow,    arial; 
+    font-weight: bold;
+    color: #fefefe;
+    text-decoration: none;
+    display: block;
+    padding: 13px;
+    text-shadow: 0 -1px 0 #000;
+   }
+#menu a:hover {
+    background:#506495;
+ }
+ .col-sm-3 a:hover {
+     background-color:#506495!important;
+ }

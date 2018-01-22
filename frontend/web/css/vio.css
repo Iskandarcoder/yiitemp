@@ -1,0 +1,40 @@
+    
+    h2{
+            font-size:25px;
+            text-shadow:1px 1px 1px #fff;
+            padding:2px;
+            text-align: center;
+           color: #1479dd;
+        }
+ h3 {
+  color: #bb6920;
+  font-size: 20px "Trebuchet MS", tahoma, verdana, arial narrow,    arial; 
+  font-weight: bold;
+  margin-left: 20px;
+}   
+ h4 { 
+  color: darkblue;
+  font-size: 20px "Trebuchet MS", tahoma, verdana, arial narrow,    arial    !impotant;
+  margin: 0;
+    cursor: pointer;
+}  
+      	#content {font-size:1.0em;margin:0;margin-bottom:10px}
+	  #content .post {padding:10px 20px;position:relative;background:#eee;margin-bottom:5px}
+		#content .post .title{position:relative;height:1%;}
+			#content .post .title h4{ margin-top:0; }
+			#content .post .title h4:hover {color: #d00;}
+			#content .post .title p{font: 18px;font-style:italic;font-weight:bold;margin:0; color: #666;}
+			#content .post .title span{
+				position:absolute;
+				right:0;top:30%;
+				cursor:pointer;
+				border: 1px solid #aaaaaa;
+				background:#ffffff;
+				display:block;
+				font-size:0
+				}
+			#content .inactive .title span{background-position:left bottom}
+		#content .post .entry{padding:5px;margin:0;
+		display:none;border: 1px solid #aaaaaa;font-weight: normal;font-size:1.0em;
+		background:#ffffff;
+}

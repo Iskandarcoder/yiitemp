@@ -1,0 +1,87 @@
+.comments {
+  background-color: # fff; /*#f0ffff;*/
+  border: 2px solid #339933;
+  border-radius: 7px;
+  padding: 4px;
+  text-align: center;
+  width: 1100px;
+  margin: 0 auto;
+}
+header{
+	width: 1100px;
+	margin: 0 auto;
+	font: 18px "Trebuchet MS", tahoma, verdana, arial narrow,    arial;  
+	padding: 10px;
+	/*color: darkred;*/
+}
+header span {
+    color: darkred;	
+    font: 20px "Trebuchet MS", tahoma, verdana, arial narrow,    arial;  
+}
+.comm_head {
+  background-color: #F0FFFF ; /*#ddffdd;*/
+  border: 1px solid #4874a3;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 0 5px #00ffaa inset;
+  padding: 2px 3px;
+  height: 20px;
+}
+.comm_body {
+  background-color: #f6f6f6;
+  box-shadow: 0 0 2px #000000 inset;
+  padding: 0 3px 0 5px;
+  text-align: left;
+}
+.comm_name {
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
+  color: darkblue;
+  }
+.comm_date {
+  float: right;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 100px;
+}
+._line {
+  border-top: 1px dotted #000000;
+  width: 1100px;
+	margin: 15px  auto;
+}
+.comm_text{
+	margin-bottom: 10px;
+}
+.add_comm {
+  background-color: #EAF2FB; /*#66aaff;*/
+  border: 1px solid #0033ff;
+  border-radius: 7px;
+  box-shadow: 2px 2px 2px #666666, 0 0 4px 2px #0066aa inset;
+  display: table;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  width: 600px;
+  margin-top: 10px;
+}
+.add_comm  textarea{
+	/*font: 15px "Trebuchet MS", tahoma, verdana, arial narrow,    arial;*/
+}
+.c_right {
+ text-align: center;
+}
+#RO_eslat{
+	    color:   #00678c !important; /*;  #ff665c*/
+	    font: 17px "Trebuchet MS", tahoma, verdana, arial narrow,    arial;
+          cursor: pointer;
+          text-align: center;
+}
+.add_comm > div {
+  margin: 3px 5px;
+ }
+#eslat{
+	text-align: center;
+	font: 15px "Trebuchet MS", tahoma, verdana, arial narrow,    arial;
+	color: #840000 ;
+}

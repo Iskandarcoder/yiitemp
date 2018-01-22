@@ -1,0 +1,195 @@
+/* Main tabs */
+//@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+
+body {
+    font-family: 'Roboto Condensed', san-serif;
+ //   background: #16A085;
+}
+
+.board {
+    width: 100%;
+    height: auto;
+    margin: 0px auto;
+    background: none;
+}
+
+.board .nav-tabs {
+    position: relative;
+    margin: 0px auto;
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+
+.liner {
+    height: 2px;
+    background: #ccc;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.nav-tabs > li {
+    width: 25%;
+}
+
+.nav-tabs > li:after {
+    content: " ";
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    margin-left: -10px;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #596fa6;
+    transition: left 1s;
+}
+
+.nav-tabs > li.active:after {
+    left: 50%;
+    opacity: 1;
+}
+
+.nav-tabs > li[rel-index="-1"]:after {
+    left: calc(50% + 100%);
+}
+
+.nav-tabs > li[rel-index="-2"]:after {
+    left: calc(50% + 200%);
+}
+
+.nav-tabs > li[rel-index="-3"]:after {
+    left: calc(50% + 300%);
+}
+
+.nav-tabs > li[rel-index="1"]:after {
+    left: calc(50% - 100% );
+}
+
+.nav-tabs > li[rel-index="2"]:after {
+    left: calc(50% - 200%);
+}
+
+.nav-tabs > li[rel-index="3"]:after {
+    left: calc(50% - 300%);
+}
+
+.nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto 25px auto!important;
+    border-radius: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-right: 2px;
+    line-height: 0!important;
+    border: 0!important;
+    }
+
+.nav-tabs > li a:hover {
+    border: none!important;
+    background: none!important;
+}
+
+.nav-tabs > li a:active {
+    border: none!important;
+    background: none!important;
+}
+
+.nav-tabs > li .btn:active {
+    border: none!important;
+    background: none!important;
+}
+
+.nav-tabs > li a:focus {
+    border: none!important;
+    background: none!important;
+}
+
+.nav-tabs > li.active a, .nav-tabs > li.active a:hover {
+    border: none!important;
+    background: none!important;
+}
+
+.nav-tabs > li span {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100%;
+    background: white;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+.nav-tabs > li:nth-of-type(1) span {
+    color: #596fa6;
+    border: 2px solid #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(1).active span {
+    color: #fff;
+    background: #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(2) span {
+    color: ##596fa6;
+    border: 2px solid #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(2).active span {
+    color: #fff;
+    background: #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(3) span {
+    color: #596fa6;
+    border: 2px solid #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(3).active span {
+    color: #fff;
+    background: #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(4) span {
+    color: #596fa6;
+    border: 2px solid #596fa6;
+}
+
+.nav-tabs > li:nth-of-type(4).active span {
+    color: #fff;
+    background: #596fa6;
+}
+
+.nav-tabs > li > a.disabled {
+    opacity: 1;
+}
+
+.nav-tabs > li > a.disabled span {
+    border-color: #ddd;
+    color: #aaa;
+}
+
+div[role="tabpanel"]:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.nav-tabs > li {
+    text-align: center!important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #555;
+    cursor: default;
+    background-color: 0!important;
+    border: 0!important;
+    border-bottom-color: 0!important;

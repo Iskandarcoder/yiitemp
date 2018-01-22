@@ -1,0 +1,249 @@
+//
+function getMonth($n)
+{
+ if($n=='01')  return "ßíâàðü";
+ if($n=='02')  return "Ôåâðàëü";
+ if($n=='03')  return "Ìàðò";
+ if($n=='04')  return "Àïðåëü";
+ if($n=='05')  return "Ìàé";
+ if($n=='06')  return "Èþíü";
+ if($n=='07')  return "Èþëü";
+ if($n=='08')  return "Àâãóñò";
+ if($n=='09')  return "Ñåíòÿáðü";
+ if($n=='10')  return "Îêòÿáðü";
+ if($n=='11')  return "Íîÿáðü";
+ if($n=='12')  return "Äåêàáðü";
+}
+//
+function selectRegion($id,$n){
+        var id_country =$id ;
+        var sel_n=$n;
+        if(id_country != 0){
+                $.ajax({
+                        type: "POST",
+                        url: "action/ajax.base.php",
+                        data: { action: 'showRegionForInsert', id_country: id_country },
+                        cache: false,
+                        success: function(responce){
+                        if (sel_n==1)
+                        {
+                        	$("input[name='tugjoy_uz']").val("");
+                        	$('select[name="rayon1"]').html(responce);
+  							$("input[name='tugjoy_lat']").val(selectRegionLat(id_country));
+							$("input[name='tugjoy_eng']").val(selectRegionEng(id_country));
+                       	}
+                       	else
+                       	{
+                         	$("input[name='adress_uz']").val("");
+                        	$('select[name="rayon2"]').html(responce);
+  	//						$("input[name='adress_uz']").val($.trim($("#oblast2 option:selected").text()));
+                       		}
+                        }
+                });
+        };
+};
+
+function selectCity($id,$n){
+        var id_region = $id; //$('select[name="oblast"]').val();
+        var sel_n=$n
+        var str_l='';
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showCityForInsert', id_region: id_region },
+                cache: false,
+                success: function(responce){
+                if (sel_n==1)
+                {
+                	$('select[name="selectPlaces"]').html(responce);
+                	 Street(id_region);
+                	$("input[name='adress_uz']").val("");
+                	str_l=$.trim($("#oblast2 option:selected").text())+', ';
+                	if ($('select[name="rayon2"]').val()!=0)
+                	str_l=str_l+$.trim($("#rayon2 option:selected").text());
+             //   	$("input[name='adress_uz']").val(str_l);
+
+                }
+                 }
+        });
+};
+
+function Street($id){
+        var id_place = $id; //$('select[name="oblast"]').val();
+        var str_l='';
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showStreetForInsert',  id_place:  id_place },
+                cache: false,
+                success: function(responce){
+                $('select[name="selectStreet"]').html(responce);
+                }
+        });
+        };
+function selectCountry($id){
+        var id_place = $id;
+        if ($id!=182)
+        {
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showCountryForInsert',  id_place:  id_place },
+                cache: false,
+                success: function(responce){$("input[name='tugjoy_eng']").val(responce);
+                selectCountryLat(id_place);
+                }
+        });
+        }
+        else
+        {
+       $("input[name='tugjoy_lat']").val('');
+       $("input[name='tugjoy_eng']").val('');
+       }
+
+};
+function selectCountryLat($id){
+        var id_place = $id;
+        if ($id!=182)
+        {
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showCountryLatInsert',  id_place:  id_place },
+                cache: false,
+                success: function(responce){$("input[name='tugjoy_lat']").val(responce); }
+        });
+        }
+        else
+        {
+       $("input[name='tugjoy_lat']").val('');
+       $("input[name='tugjoy_eng']").val('');
+       }
+
+};
+
+function selectRegionLat($id){
+        var id_place = $id;
+        if ($id!=0)
+        {
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showRegionLat',  id_place:  id_place },
+                cache: false,
+                success: function(responce){$("input[name='tugjoy_lat']").val(responce); }
+        });
+        }
+        else
+        {
+       $("input[name='tugjoy_lat']").val('');
+       $("input[name='tugjoy_eng']").val('');
+       }
+
+};
+
+function selectRegionEng($id){
+        var id_place = $id;
+        if ($id!=0)
+        {
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showRegionEng',  id_place:  id_place },
+                cache: false,
+                success: function(responce){$("input[name='tugjoy_eng']").val(responce); }
+        });
+        }
+        else
+        {
+       $("input[name='tugjoy_lat']").val('');
+       $("input[name='tugjoy_eng']").val('');
+       }
+
+};
+
+function showStreet()
+{   var str_l='';
+
+ if ($('select[name="selectStreet"]').val()!=0)
+                {
+                $("input[name='adress_uz']").val("");
+//               	str_l=$.trim($("#oblast2 option:selected").text())+', ';
+//               	str_l=str_l+$.trim($("#rayon2 option:selected").text())+', ';
+               	if ($('select[name="selectPlaces"]').val()!=0)
+            	str_l=str_l+$.trim($("#selectPlaces option:selected").text())+', ';
+               	str_l=str_l+$.trim($("#selectStreet option:selected").text());
+               	$("input[name='adress_uz']").val(str_l);
+               	}
+};
+
+function showPlaces()
+{   var str_l='';
+
+ if ($('select[name="selectPlaces"]').val()!='0')
+                {
+                $("input[name='adress_uz']").val("");
+    //           	str_l=$.trim($("#oblast2 option:selected").text())+', ';
+    //           	str_l=str_l+$.trim($("#rayon2 option:selected").text())+', ';
+               	str_l=str_l+$.trim($("#selectPlaces option:selected").text());+', '
+               	if ($('select[name="selectStreet"]').val()!=0)
+               	str_l=str_l+$.trim($("#selectStreet option:selected").text());
+               	$("input[name='adress_uz']").val(str_l);
+               	}
+};
+
+function showHome()
+{   var str_l='';
+
+ if ($('input[name="home"]').val()!='')
+                {
+                $("input[name='adress_uz']").val("");
+ //              	str_l=$.trim($("#oblast2 option:selected").text())+', ';
+ //              	str_l=str_l+$.trim($("#rayon2 option:selected").text())+', ';
+				if ($('select[name="selectPlaces"]').val()!=0)
+            		str_l=str_l+$.trim($("#selectPlaces option:selected").text())+', ';
+               	if ($('select[name="selectStreet"]').val()!=0)
+	               	str_l=str_l+$.trim($("#selectStreet option:selected").text());
+               	str_l=str_l+", "+$('input[name="home"]').val()+'-uy';
+               	$("input[name='adress_uz']").val(str_l);
+               	}
+};
+function showFlat()
+{   var str_l='';
+
+ if ($('input[name="flat"]').val()!='')
+                {
+                $("input[name='adress_uz']").val("");
+         //      	str_l=$.trim($("#oblast2 option:selected").text())+', ';
+         //      	str_l=str_l+$.trim($("#rayon2 option:selected").text())+', ';
+				if ($('select[name="selectPlaces"]').val()!=0)
+            		str_l=str_l+$.trim($("#selectPlaces option:selected").text())+', ';
+               	if ($('select[name="selectStreet"]').val()!=0)
+	               	str_l=str_l+$.trim($("#selectStreet option:selected").text());
+	            if ($('input[name="home"]').val()!='')
+               	str_l=str_l+", "+$('input[name="home"]').val()+'-uy';
+               	str_l=str_l+", "+$('input[name="flat"]').val()+'-xonadon';
+               	$("input[name='adress_uz']").val(str_l);
+               	}
+};
+function getcountry($div_id)
+{
+	var ndiv=$div_id;
+	var str_l='';
+	if (ndiv!=0)
+        {
+
+        $.ajax({
+                type: "POST",
+                url: "action/ajax.base.php",
+                data: { action: 'showCountry',  id_place:  ndiv },
+                cache: false,
+                success: function(responce){ ($('select[name="for_strana"]').val(responce));}
+                });
+        }
+        return str_l;
+// 	$("input[name='tugjoy_eng']").val(responce); } return str_l;
+
+
+
+};
