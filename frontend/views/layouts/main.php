@@ -43,13 +43,42 @@ AppAsset::register($this);
     <div class="col-sm-6">
       <div class="row">
 <div class="col-sm-offset-6 col-xs-3">
-        <a href="#">
-        <h5>O`zbekcha</h5>
-      </a>
+        
+        <h5 style="color: white;">
+        <?= Html::a('O\'zbekcha', array_merge(
+
+                \Yii::$app->request->get(),
+
+                [\Yii::$app->controller->route, 'language' => 'uz']
+
+              ),
+
+              [
+
+                'class' => 'language'
+
+              ]
+
+            ); ?>
+      </h5>
       </div>
       <div class="col-xs-3">
       <a href="#">
-        <h5>Русский</h5>
+        <h5><?= Html::a('Русский', array_merge(
+
+                \Yii::$app->request->get(),
+
+                [\Yii::$app->controller->route, 'language' => 'ru']
+
+              ),
+
+              [
+
+                'class' => 'language'
+
+              ]
+
+            ); ?></h5>
       </a>
       </div>
      </div>

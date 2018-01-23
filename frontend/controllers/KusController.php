@@ -149,48 +149,57 @@ class KusController extends Basecontroller
         }
     }
 
-    public function actionRegions(){
+    public function actionRegions($id){
         //$country_id = 182;
+        // vd($id);
         $result = "";
-        $country_id = Yii::$app->request->queryParams['sp_country_id'];
+        // $country_id = Yii::$app->request->queryParams['sp_country_id'];
         $name = 'sp_name_'.Yii::$app->language;
-        $regions = SpRegion::find()->where(['sp_country_id'=>$country_id])->select(['sp_id', $name])->all();
+        $regions = SpRegion::find()
+                        ->select(['sp_id', $name])
+                        ->where(['sp_country_id'=>$id])
+                        ->all();
+        $result .= "<option>---</option>";
         if ($regions) {
             foreach ($regions as $region) {
                 $result .= "<option value='".$region->sp_id."'>".$region->$name."</option>";
             }
         }
-        echo $result;
-        Yii::$app->end();
+        // vd($result);
+        return $result;
+        // echo $result;
+        // Yii::$app->end();
     }
 
-    public function actionDistricts(){
-       
+    public function actionDistricts($id)
+    {
+        // vd($id);
         //$region_id = 1;
         $result = "";
-        $region_id = Yii::$app->request->queryParams['sp_id'];
+        // $region_id = Yii::$app->request->queryParams['sp_id'];
         $name = 'sp_name_'.Yii::$app->language;
-        $districts = SpDistrict::find()->where(['sp_region'=>$region_id])->select(['sp_id', $name])->all();
+        $districts = SpDistrict::find()->where(['sp_region'=>$id])->select(['sp_id', $name])->all();
+        $result .= "<option>---</option>";
         if ($districts) {
             foreach ($districts as $district) {
                 $result .= "<option value='".$district->sp_id."'>".$district->$name."</option>";
             }
         }
-        echo $result;
-        Yii::$app->end();
+        return $result;
     }
 
-    public function actionSpPlaces(){
+    public function actionSpPlaces($id)
+    {
         $result = "";
-        $district_id = Yii::$app->request->queryParams['sp_district'];
+        // $district_id = Yii::$app->request->queryParams['sp_district'];
         $name = 'sp_name_'.Yii::$app->language;
-        $placess = SpPlace::find()->where(['sp_district'=>$city_id])->select(['sp_id', $name])->all();
+        $placess = SpPlace::find()->where(['sp_id'=>$id])->select(['sp_id', $name])->all();
+        $result .= "<option>---</option>";
         if ($placess) {
             foreach ($placess as $places) {
                 $result .= "<option value='".$places->sp_id."'>".$places->$name."</option>";
             }
         }
-        echo $result;
-        Yii::$app->end();
+        return $result;
     }
 }
