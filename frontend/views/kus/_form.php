@@ -85,10 +85,43 @@ if(Yii::$app->language =='ru'){
 ?>
 
 <div class="container well well-lg">
- 
+ <h3>O`zbekiston Respublikasining horijda vaqtincha yashovchi fuqarolarini ro`yxatga olish uchun shaxsiy ma'lumotlarni kiritish</h3>
+            <br/>
+            <br/>
+    
+
+   <div class="board">
+          <ul class="nav nav-tabs">
+                <div class="liner"></div>
+                <li rel-index="0"  class="active">
+                    <a  id="s1" href="#step-1" class="btn media-links" aria-controls="step-1" role="tab" data-toggle="tab">
+                      <h4 class="step-txt1">Asosiy malumotlar</h4>
+                      <span><i class="fa fa-user media-imgs"></i></span>
+                    </a>
+                </li>
+                <li rel-index="1">
+                    <a  id="s2" href="#step-2" class="btn disabled" aria-controls="step-2" role="tab" data-toggle="tab">
+                      <h4 class="step-txt2">Pasport</h4>
+                      <span><i class="fa fa-vcard-o"></i></span>
+                    </a>
+                </li>
+                <li  rel-index="2">
+                    <a  id="s3" href="#step-3" class="btn disabled" aria-controls="step-3" role="tab" data-toggle="tab">
+                      <h4 class="step-txt3">Yashash joyi</h4>
+                      <span><i class="fa fa-home"></i></span>
+                    </a>
+                </li>
+                <li rel-index="3">
+                    <a  id="s4" href="#step-4" class="btn disabled" aria-controls="step-4" role="tab" data-toggle="tab">
+                      <h4 class="step-txt4">Qo'shimcha ma'lumotlar</h4>
+                      <span><i class="fa fa-file-text-o"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
   <?php $form = ActiveForm::begin(); ?>
-
+<div class="tab-content">
   <div class="1form-group" id="photo">
         <div class="col-sm-offset-9 col-sm-3">
           <?php echo FileInput::widget([
@@ -450,7 +483,7 @@ if(Yii::$app->language =='ru'){
   <div class="form-group">
     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
   </div>
-
+</div>
   <?php ActiveForm::end(); ?>
 
 </div>
