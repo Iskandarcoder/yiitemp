@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         'css/jquery-ui.structure.css',
         'css/jquery-ui.css',
         'css/jquery-ui.theme.css',
-        'css/bootstrap.min.css',
+        //'css/bootstrap.min.css',
         'fonts/font-awesome/css/font-awesome.min.css',
         'css/vibor.css',
         'css/pkudoc.css',
@@ -38,6 +38,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-      //  'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapAsset',
     ];
 }

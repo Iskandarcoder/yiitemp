@@ -24,7 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+   <?php
+    echo '<img src="data:image/jpeg;base64,'.base64_encode($model->photo).'"/>';
+   ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -39,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'name_latin',
             'patronym_latin',
             'birth_date',
-            'photo',
+            //'photo',
+            //base64_encode('photo'),
+            //Html::img('photo'),
+
             'sex_id',
             'nationality_id',
             'marital_status_id',

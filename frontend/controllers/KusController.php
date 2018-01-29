@@ -12,7 +12,9 @@ use yii\filters\VerbFilter;
 use backend\models\SpRegion;
 use backend\models\SpDistrict;
 use backend\models\SpPlace;
+use backend\models\SpStreet;
 use common\models\CaptchaCode;
+use yii\web\UploadedFile;
 
 /**
  * KusController implements the CRUD actions for Kus model.
@@ -83,10 +85,17 @@ class KusController extends Basecontroller
 
         if ($model->load(Yii::$app->request->post())) {
 
-           // $model->id = $model->setRandomString->id;
-
             $model->arrival_date = $model->begin_date;
+            $model->status = '0';
+            $model->consular_account_type = '0';
+
+            $img = UploadedFile::getInstance($model,'photo');
+            $imgData =file_get_contents($img->tempName);
+            //print_r($imgData);die();
             
+            $model->photo = $imgData;
+
+
 
             $model->save();
 
@@ -194,6 +203,21 @@ class KusController extends Basecontroller
         // $district_id = Yii::$app->request->queryParams['sp_district'];
         $name = 'sp_name_'.Yii::$app->language;
         $placess = SpPlace::find()->where(['sp_id'=>$id])->select(['sp_id', $name])->all();
+        $result .= "<option>---</option>";
+        if ($placess) {
+            foreach ($placess as $places) {
+                $result .= "<option value='".$places->sp_id."'>".$places->$name."</option>";
+            }
+        }
+        return $result;
+    }
+
+    public function actionStreet($id)
+    {
+        $result = "";
+        // $district_id = Yii::$app->request->queryParams['sp_district'];
+        $name = 'sp_name_'.Yii::$app->language;
+        $placess = SpStreet::find()->where(['sp_id'=>$id])->select(['sp_id', $name])->all();
         $result .= "<option>---</option>";
         if ($placess) {
             foreach ($placess as $places) {
