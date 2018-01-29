@@ -85,11 +85,7 @@ if(Yii::$app->language =='ru'){
 ?>
 
 <div class="container well well-lg">
-  <style type="text/css">
-    .btn .btn-primary .btn-block{
-
-    }
-  </style>
+ 
 
   <?php $form = ActiveForm::begin(); ?>
 
