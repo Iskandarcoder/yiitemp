@@ -83,6 +83,17 @@ if(Yii::$app->language =='ru'){
 
 
 ?>
+<style type="text/css">
+  .fileinput-cancel-button {
+    display: none;
+  }
+  .fileinput-upload-button {
+    display: none;
+  }
+  .fileinput-remove-button {
+    display: none;
+  }
+</style>
 
 <div class="container well well-lg">
  <h4>O`zbekiston Respublikasining horijda vaqtincha yashovchi fuqarolarini ro`yxatga olish uchun shaxsiy ma'lumotlarni kiritish</h4>
@@ -128,21 +139,11 @@ if(Yii::$app->language =='ru'){
 
           <div class="1form-group">
                 <div class="col-sm-offset-9 col-sm-3">
-                  <?php echo FileInput::widget([
-                      'name' => 'photo',
-                      'pluginOptions' => [
-                          'showCaption' => false,
-                          'showRemove' => false,
-                          'showUpload' => false,
-                          'showCancel' => false,
-                          'browseClass' => 'btn btn-primary btn-block',
-                          //'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                          'browseLabel' =>  'Select Photo'
-                      ],
-                      'options' => ['accept' => 'image/*']
-                  ]);
+                  <?php echo $form->field($model, 'photo')->widget(FileInput::classname(), [
+                            'options' => ['accept' => 'image/*'],
+                        ]);
                   ?>
-                  
+
                 </div>
           </div>
 
