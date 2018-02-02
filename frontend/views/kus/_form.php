@@ -133,26 +133,11 @@ if(Yii::$app->language =='ru'){
 <div class="tab-content">
 
     <div  class="tab-pane active" id="step-1">
-<<<<<<< HEAD
+
     	<h3 class="step-txt1"><?= Yii::t('app', 'Asosiy ma\'lumotlar'); ?></h3>
           
         <div class="row">
           <div class="form-group col-sm-6">
-=======
-
-          <div class="1form-group">
-                <div class="col-sm-offset-9 col-sm-3">
-                  <?php echo $form->field($model, 'photo')->widget(FileInput::classname(), [
-                            'options' => ['accept' => 'image/*'],
-                        ]);
-                  ?>
-
-                </div>
-          </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
->>>>>>> 862084a6001e2b5119af08269ebe367aff8684f4
                   <?= $form->field($model, 'surname_latin')->textInput(['maxlength' => true]) ?>
           </div>
 
@@ -676,4 +661,4 @@ $this->registerJs("$(document).ready(function($){
 
 })");
 
-?>
+?> 
