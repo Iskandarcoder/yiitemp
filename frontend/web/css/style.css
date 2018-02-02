@@ -232,9 +232,8 @@ hr{
   }
 
  .step-txt1,.step-txt2,.step-txt3,.step-txt4{
+  text-align: left!important;
     color:#4b6097;
-    position: absolute;
-    top: -20px;
        }
 
    .disabled h4{
@@ -245,18 +244,7 @@ hr{
     position: relative;
     text-align: center;
   }
-  .step-txt1{
-    left: -35px;
-  }
-   .step-txt2{
-    left: 3px;
-  }
-   .step-txt3{
-    left: -13px;
-  }
-   .step-txt4{
-    left: -50px;
-  }
+  
 .dead {
   width: 39px;
 }
@@ -270,7 +258,7 @@ float: left;
 .btn-con{
   padding: 0!important;
 }
-#next,#send {
+#next,#back,#send {
   width: 331px!important;
 }
 
@@ -318,6 +306,24 @@ float: left;
         border-radius: 0;
 
     }
-#photo{
-  
+
+ .fileinput-cancel-button {
+    display: none;
+  }
+  .fileinput-upload-button {
+    display: none;
+  }
+  .fileinput-remove-button {
+    display: none;
+  }
+  .btn-file,.btn-file:hover {
+    background-color: #ededed!important;
+  color: #585252;
+  border: 1px solid #cbcac8;
+  }
+  .btn-file i {
+    margin-left: 10px;
+  }
+#send i{
+  margin: 10px!important;
 }

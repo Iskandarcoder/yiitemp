@@ -85,7 +85,7 @@ if(Yii::$app->language =='ru'){
 ?>
 
 <div class="container well well-lg">
- <h4>O`zbekiston Respublikasining horijda vaqtincha yashovchi fuqarolarini ro`yxatga olish uchun shaxsiy ma'lumotlarni kiritish</h4>
+ <h4><?= Yii::t('app', 'O`zbekiston Respublikasining horijda doimiy yashovchi fuqarolarini ro`yhatga olish uchun shaxsiy ma\'lumotlarni kiritish'); ?></h4>
             <br/>
             <br/>
     
@@ -95,78 +95,51 @@ if(Yii::$app->language =='ru'){
                 <div class="liner"></div>
                 <li rel-index="0"  class="active">
                     <a  id="s1" href="#step-1" class="btn media-links" aria-controls="step-1" role="tab" data-toggle="tab">
-                      <h4 class="step-txt1">Asosiy malumotlar</h4>
                       <span><i class="fa fa-user media-imgs"></i></span>
                     </a>
                 </li>
                 <li rel-index="1">
                     <a  id="s2" href="#step-2" class="btn disabled" aria-controls="step-2" role="tab" data-toggle="tab">
-                      <h4 class="step-txt2">Pasport</h4>
                       <span><i class="fa fa-vcard-o"></i></span>
                     </a>
                 </li>
                 <li  rel-index="2">
                     <a  id="s3" href="#step-3" class="btn disabled" aria-controls="step-3" role="tab" data-toggle="tab">
-                      <h4 class="step-txt3">Yashash joyi</h4>
                       <span><i class="fa fa-home"></i></span>
                     </a>
                 </li>
                 <li rel-index="3">
                     <a  id="s4" href="#step-4" class="btn disabled" aria-controls="step-4" role="tab" data-toggle="tab">
-                      <h4 class="step-txt4">Qo'shimcha ma'lumotlar</h4>
                       <span><i class="fa fa-file-text-o"></i></span>
                     </a>
                 </li>
             </ul>
         </div>
-
+</br>
+</br>
   <?php $form = ActiveForm::begin(); ?>
 
 <div class="tab-content">
 
     <div  class="tab-pane active" id="step-1">
-
-          <div class="1form-group">
-                <div class="col-sm-offset-9 col-sm-3">
-                  <?php echo FileInput::widget([
-                      'name' => 'photo',
-                      'pluginOptions' => [
-                          'showCaption' => false,
-                          'showRemove' => false,
-                          'showUpload' => false,
-                          'showCancel' => false,
-                          'browseClass' => 'btn btn-primary btn-block',
-                          //'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                          'browseLabel' =>  'Select Photo'
-                      ],
-                      'options' => ['accept' => 'image/*']
-                  ]);
-                  ?>
-                  
-                </div>
-          </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+    	<h3 class="step-txt1"><?= Yii::t('app', 'Asosiy ma\'lumotlar'); ?></h3>
+          
+        <div class="row">
+          <div class="form-group col-sm-6">
                   <?= $form->field($model, 'surname_latin')->textInput(['maxlength' => true]) ?>
-
-                </div>
           </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-6">
                   <?= $form->field($model, 'name_latin')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                   <?= $form->field($model, 'patronym_latin')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-3">
                   <?= $form->field($model, 'birth_date')
                     ->widget(DatePicker::classname(), [
                         'language' => 'ru',
@@ -176,17 +149,15 @@ if(Yii::$app->language =='ru'){
                         ],
                     ]);
                   ?>
-                </div>
           </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'sex_id')->dropDownlist($sex_id, ['prompt' => '---']); ?>
-                </div>
+       
+          <div class="form-group col-sm-3">
+                <?= $form->field($model, 'sex_id')->dropDownlist($sex_id, ['prompt' => '---']); ?>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                     <?=$form->field($model, 'nationality_id')->widget(Select2::classname(), [
                           'data' => ArrayHelper::map(SpNation::find()->all(), 'sp_id', 'sp_name_'.Yii::$app->language),
                           'language' => 'ru',
@@ -198,45 +169,47 @@ if(Yii::$app->language =='ru'){
                       ]);
                       
                     ?>
-                </div>
           </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+                
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'marital_status_id')->dropDownlist($marital_status_id, ['prompt' => '---']); ?>
-                </div>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'birth_country_id')->dropDownList($country, ['prompt' => '---']) ?>
-                </div>
           </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+                
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'birth_region_id')->dropDownList(ArrayHelper::map($spregion, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'birth_district_id')->dropDownList(ArrayHelper::map($spdistrict, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
           </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+                
+          <!-- <div class="form-group col-sm-6">
                     <?= $form->field($model, 'birth_place_id')->dropDownList(ArrayHelper::map($spplace, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
-          </div> 
+          </div>  -->
+
+          <div class="1form-group col-sm-6">
+                  <?php echo $form->field($model, 'photo')->widget(FileInput::classname(), [
+                            'options' => ['accept' => 'image/*','maxSize'=>'500000'],
+                        ]);
+                  ?>
+          </div>
+        </div>
 
 
     </div>    <!-- 1-step tugadi shu yerda --> 
 
     <div  class="tab-pane"  id="step-2"> 
-          <div class="form-group">
-                <div class="col-sm-6">
+    	<h3 class="step-txt2"><?= Yii::t('app', 'Pasport'); ?></h3>
+        <div class="row">
+          <div class="form-group col-sm-6">
                     <?=$form->field($model, 'document_type_id')->widget(Select2::classname(), [
                           'data' => ArrayHelper::map(SpDoctype::find()->all(), 'sp_id', 'sp_name_'.Yii::$app->language),
                           'language' => 'ru',
@@ -247,21 +220,19 @@ if(Yii::$app->language =='ru'){
                       ]);
                       
                     ?>
-                </div>
-          </div>
-          <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'doc_seria')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>
           
-          <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'doc_number')->textInput(['maxlength' => true]) ?>
-                </div>
+          <div class="form-group col-sm-2">
+                    <?= $form->field($model, 'doc_seria')->textInput(['maxlength' => true]) ?>
           </div>
-          <div class="form-group">
-                <div class="col-sm-6">
+        
+          <div class="form-group col-sm-4">
+                    <?= $form->field($model, 'doc_number')->textInput(['maxlength' => true]) ?>
+          </div>
+        </div>
+         
+        <div class="row"> 
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'date_begin_document')
                       ->widget(DatePicker::classname(), [
                         'language' => 'ru',
@@ -271,11 +242,9 @@ if(Yii::$app->language =='ru'){
                         ],
                       ]);
                     ?>
-                </div>
           </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+        
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'date_endocument')
                       ->widget(DatePicker::classname(), [
                         'language' => 'ru',
@@ -285,11 +254,11 @@ if(Yii::$app->language =='ru'){
                         ],
                       ]);
                     ?>
-                </div>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                     <?=$form->field($model, 'document_div_id')->widget(Select2::classname(), [
                           'data' => ArrayHelper::map(SpDivision::find()->all(), 'sp_id', 'sp_name_'.Yii::$app->language),
                           'language' => 'ru',
@@ -301,90 +270,66 @@ if(Yii::$app->language =='ru'){
                       ]);
                       
                     ?>
-                </div>
           </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+        
+          <div class="form-group col-sm-6"">
                     <?= $form->field($model, 'document_div_place')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>
-
+        </div>
     </div> <!-- 2-step tugadi -->
 
     <div  class="tab-pane"  id="step-3">
-          <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'living_country_id')->dropDownList($country, ['prompt' => '---']) ?>
-                </div>
-          </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'living_region_id')->dropDownList(ArrayHelper::map($spregion, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
+        <h3 class="step-txt3"><?= Yii::t('app', 'O`zbekistonda yashagan joyi'); ?></h3>
+        <div class="row">
+          <div class="form-group col-sm-6">
+                    <?= $form->field($model, 'living_region_id')->dropDownList($spregion, ['prompt' => '---']) ?>
           </div>
           
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'living_district_id')->dropDownList(ArrayHelper::map($spdistrict, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'living_place_id')->dropDownList(ArrayHelper::map($spplace, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
           </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-6">
                     <?= $form->field($model, 'living_street_id')->dropDownList(ArrayHelper::map($street, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-                </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-4">
+                      <?= $form->field($model, 'living_block')->textInput(['maxlength' => true]) ?>
           </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'living_block')->textInput(['maxlength' => true]) ?>
-                </div>
-          </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-4">
                      <?= $form->field($model, 'living_house')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>
           
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-4">
                      <?= $form->field($model, 'living_flat')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>
+        </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-12">
                      <?= $form->field($model, 'living_place_latin')->textInput(['maxlength' => true]) ?>
-                </div>
           </div>  
+        </div>
    
     </div> <!-- 3-step tugadi -->
 
     <div  class="tab-pane"  id="step-4">
-          
-          <div class="form-group">
-                <div class="col-sm-6">
+    	<h3 class="step-txt4"><?= Yii::t('app', 'Qo\'shimcha ma\'lumotlar' ); ?></h3>
+        <div class="row">
+          <div class="form-group col-sm-6">
                      <?= $form->field($model, 'living_foreign_country_id')->dropDownList($country, ['prompt' => '---']) ?>
-                </div>
           </div>
 
-          <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'living_foreign_place')->textInput(['maxlength' => true]) ?>
-                </div>
-          </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
+          <div class="form-group col-sm-6">
                      <?= $form->field($model, 'begin_date')
                       ->widget(DatePicker::classname(), [
                         'language' => 'ru',
@@ -394,10 +339,33 @@ if(Yii::$app->language =='ru'){
                         ],
                       ]);
                     ?>
-                </div>
           </div>
-          <div class="form-group">
-                <div class="col-sm-12">
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+                     <?= $form->field($model, 'other_citizenship_id')->dropDownList($country, ['prompt' => '---']) ?>
+          </div>
+
+          <div class="form-group col-sm-6">
+                     <?= $form->field($model, 'foundation_cons_acc')->textInput(['maxlength' => true]) ?>
+          </div>
+        </div>
+
+        <div class="row">
+           <div class="form-group col-sm-12">
+                     <?= $form->field($model, 'work_place')->textInput(['maxlength' => true]) ?>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-12">
+                     <?= $form->field($model, 'living_foreign_place')->textInput(['maxlength' => true]) ?>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-12">
                    <?= $form->field($model, 'division_id')->widget(Select2::classname(), [
                           'data' => ArrayHelper::map(VkuKart::find()->all(), 'id', 'elchihona_qn_'.Yii::$app->language),
                           'language' => 'ru',
@@ -409,21 +377,10 @@ if(Yii::$app->language =='ru'){
                       ]);
                       
                     ?>
-                </div>
             </div>
+        </div>
 
-           <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'work_place')->textInput(['maxlength' => true]) ?>
-                </div>
-          </div>
-
-          <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'other_citizenship_id')->dropDownList($country, ['prompt' => '---']) ?>
-                </div>
-          </div>
-
+<!-- 
           <div class="form-group">
                 <div class="col-sm-6">
                      <?= $form->field($model, 'creation_date')
@@ -436,21 +393,17 @@ if(Yii::$app->language =='ru'){
                        ]);
                     ?>
                 </div>
-          </div>
+          </div> -->
 
-          <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'foundation_cons_acc')->textInput(['maxlength' => true]) ?>
-                </div>
-          </div>
 
-          <div class="form-group">
+
+<!--           <div class="form-group">
                 <div class="col-sm-6">
                      <?= $form->field($model, 'living_uzb_place')->textInput(['maxlength' => true]) ?>
                 </div>
-          </div>
+          </div> -->
 
-          <div class="form-group">
+   <!--        <div class="form-group">
                 <div class="col-sm-6">
                     <?= $form->field($model, 'endate')
                       ->widget(DatePicker::classname(), [
@@ -462,23 +415,24 @@ if(Yii::$app->language =='ru'){
                       ]);
                     ?>
                 </div>
-          </div>
+          </div> -->
 
-          <div class="form-group">
-                <div class="col-sm-6">
+        <div class="row">
+          <div class="form-group col-sm-6">
                      <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                   'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                 ]) ?>
-                </div>
           </div>
+        </div>
+
     </div>
+    	   <button id="back" class="btn btn-primary btn-lg" type="button" ><i class="fa fa-chevron-left"></i> <?= Yii::t('app', 'Orqaga'); ?></button>
           <div class="nxt-btn">
-            <button id="next" class="btn btn-primary nextBtn btn-lg" type="button" >Keyingi <i class="fa fa-chevron-right"></i></button>
-            <button id="back" class="btn btn-primary btn-lg" type="button" >Oldingi <i class="fa fa-chevron-left"></i></button>
-            <button id="send" class="btn btn-success btn-lg" type="button" >Anketani yuklab olish(chop etish) <i class="fa fa-download "></i></button>
-          </div>
-          <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <button id="next" class="btn btn-primary nextBtn btn-lg" type="button" ><?= Yii::t('app', 'Keyingi'); ?> <i class="fa fa-chevron-right"></i></button>
+          <!-- <button id="send" class="btn btn-success btn-lg" type="button" ><?= Yii::t('app', 'Anketa yuklash'); ?> <i class="fa fa-download "></i></button>
+          </div> -->
+          <div class="form-group" id="send">
+            <?= Html::submitButton($model->isNewRecord ? '<i class="fa fa-download"></i>' . ' Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success btn-lg' : 'btn btn-primary'] ) ?>
           </div>
 </div>
   <?php ActiveForm::end(); ?>
@@ -623,9 +577,9 @@ $this->registerJs("
       }
     });
   });
-var step =0;
-
+  ////////////////////////////////////////////////////////////////////////////////
 ");
+
 
 $this->registerJs("$(document).ready(function($){
     step=1; 
@@ -644,6 +598,18 @@ $this->registerJs("$(document).ready(function($){
         }
       });
 //////////////////////////////////////////////////////////////////////////////////
+       $('#back').click(function(){            
+  var n=step;
+     if(step>1)
+         {
+  n--;
+         curStepBtn =$('.nav-tabs > li:nth-of-type('+n+') > a');
+  step =n;
+    curStepBtn.removeClass('disabled').click();
+    $('.step-txt').removeClass('text-disable');
+        }
+      });
+//////////////////////////////////////////////////////////////////////////////////      
  $('.nav-tabs > li > a').click(function() { 
             if($(this).hasClass('disabled')) {
             return false;
@@ -673,8 +639,7 @@ $this->registerJs("$(document).ready(function($){
      {
      $('#back').hide();
      }  
-                  for(var i=linkIndex+1; i<5; i++)
-         $('.nav-tabs > li:nth-of-type('+i+') > a').addClass('disabled')
+                 
      step= linkIndex; 
             }
 });
