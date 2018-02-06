@@ -395,43 +395,6 @@ if(Yii::$app->language =='ru'){
             </div>
         </div>
 
-<!-- 
-          <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'creation_date')
-                       ->widget(DatePicker::classname(), [
-                         'language' => 'ru',
-                         'pluginOptions' => [
-                             'format' => 'yyyy-mm-dd',
-                             'todayHighlight' => true
-                         ],
-                       ]);
-                    ?>
-                </div>
-          </div> -->
-
-
-
-<!--           <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'living_uzb_place')->textInput(['maxlength' => true]) ?>
-                </div>
-          </div> -->
-
-   <!--        <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'endate')
-                      ->widget(DatePicker::classname(), [
-                        'language' => 'ru',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'todayHighlight' => true
-                        ],
-                      ]);
-                    ?>
-                </div>
-          </div> -->
-
         <div class="row">
           <div class="form-group col-sm-6">
                      <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [

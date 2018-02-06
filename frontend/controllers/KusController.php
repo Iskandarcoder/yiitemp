@@ -88,6 +88,10 @@ class KusController extends Basecontroller
             $model->arrival_date = $model->begin_date;
             $model->status = '0';
             $model->consular_account_type = '0';
+            $model->living_country_id = '182';
+            $model->creation_date = date('Y-m-d h:m:s');
+            $model->endate = date("Y-m-d h:m:s",strtotime("+3 Months"));
+
 
             $img = UploadedFile::getInstance($model,'photo');
             $imgData =file_get_contents($img->tempName);
@@ -95,7 +99,7 @@ class KusController extends Basecontroller
             
             $model->photo = $imgData;
 
-
+          
 
             $model->save();
 
