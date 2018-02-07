@@ -25,10 +25,13 @@ use kartik\file\FileInput;
 $lang = Yii::$app->language;
 
 $country = [];
+$living_regions = [];
 
   $country = SpCountry::find()->all();
   $country = ArrayHelper::map($country, 'sp_id','sp_name_'.Yii::$app->language);
 // vd($country);
+  $living_regions = SpRegion::find()->all();
+  $living_regions = ArrayHelper::map($living_regions, 'sp_id','sp_name_'.Yii::$app->language);
 
 $spregion = [];
 if ($model->birth_country_id) {
@@ -341,7 +344,7 @@ if(Yii::$app->language =='ru'){
         <h3 class="step-txt3"><?= Yii::t('app', 'O`zbekistonda yashagan joyi'); ?></h3>
         <div class="row">
           <div class="form-group col-sm-6">
-                    <?= $form->field($model, 'living_region_id')->dropDownList($spregion, ['prompt' => '---']) ?>
+                    <?= $form->field($model, 'living_region_id')->dropDownList($living_regions, ['prompt' => '---']) ?>
           </div>
           
           <div class="form-group col-sm-6">
@@ -438,43 +441,6 @@ if(Yii::$app->language =='ru'){
                     ?>
             </div>
         </div>
-
-<!-- 
-          <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'creation_date')
-                       ->widget(DatePicker::classname(), [
-                         'language' => 'ru',
-                         'pluginOptions' => [
-                             'format' => 'yyyy-mm-dd',
-                             'todayHighlight' => true
-                         ],
-                       ]);
-                    ?>
-                </div>
-          </div> -->
-
-
-
-<!--           <div class="form-group">
-                <div class="col-sm-6">
-                     <?= $form->field($model, 'living_uzb_place')->textInput(['maxlength' => true]) ?>
-                </div>
-          </div> -->
-
-   <!--        <div class="form-group">
-                <div class="col-sm-6">
-                    <?= $form->field($model, 'endate')
-                      ->widget(DatePicker::classname(), [
-                        'language' => 'ru',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'todayHighlight' => true
-                        ],
-                      ]);
-                    ?>
-                </div>
-          </div> -->
 
         <div class="row">
           <div class="form-group col-sm-6">
@@ -605,6 +571,8 @@ $this->registerJs("
       success: function(data){
         console.log(data);
         $('#kus-living_district_id').html(data);
+        $('#kus-living_place_id').html(data);
+        $('#kus-living_street_id').html(data);
       }
     });
   });
@@ -620,6 +588,7 @@ $this->registerJs("
       success: function(data){
         console.log(data);
         $('#kus-living_place_id').html(data);
+        $('#kus-living_street_id').html(data);
       }
     });
   });

@@ -25,7 +25,6 @@ use Yii;
  * @property integer $birth_country_id
  * @property integer $birth_region_id
  * @property integer $birth_district_id
- * @property integer $birth_place_id
  * @property string $birth_place_latin
  * @property string $doc_seria
  * @property integer $document_type_id
@@ -52,7 +51,6 @@ use Yii;
  * @property string $doc_adinfo
  * @property string $creation_date
  * @property string $foundation_cons_acc
- * @property string $living_uzb_place
  * @property integer $senstatus
  * @property string $endate
  * @property integer $reason_id
@@ -84,15 +82,15 @@ class Kus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['division_id', 'surname_latin', 'name_latin', 'patronym_latin', 'birth_date', 'photo', 'sex_id', 'nationality_id', 'birth_country_id', 'doc_seria', 'document_type_id', 'doc_number', 'living_country_id', 'living_region_id', 'living_district_id', 'living_foreign_country_id', 'living_foreign_place', 'begin_date',  'creation_date', 'marital_status_id'], 'required'],
-            [['division_id', 'sex_id', 'nationality_id', 'marital_status_id', 'birth_country_id', 'birth_region_id', 'birth_district_id', 'birth_place_id', 'document_type_id', 'document_div_id', 'living_country_id', 'living_region_id', 'living_district_id', 'living_place_id', 'living_street_id', 'living_foreign_country_id', 'other_citizenship_id', 'consular_account_type'], 'integer'],
+            [['division_id', 'surname_latin', 'name_latin', 'patronym_latin', 'birth_date', 'photo', 'sex_id', 'nationality_id', 'birth_country_id', 'doc_seria', 'document_type_id', 'doc_number', 'living_region_id', 'living_district_id', 'living_foreign_country_id', 'living_foreign_place', 'begin_date', 'marital_status_id'], 'required'],
+            [['division_id', 'sex_id', 'nationality_id', 'marital_status_id', 'birth_country_id', 'birth_region_id', 'birth_district_id', 'document_type_id', 'document_div_id', 'living_country_id', 'living_region_id', 'living_district_id', 'living_place_id', 'living_street_id', 'living_foreign_country_id', 'other_citizenship_id', 'consular_account_type'], 'integer'],
             [['photo'], 'string'],
             [['date_begin_document', 'date_endocument', 'begin_date', 'arrival_date', 'creation_date', 'endate'], 'safe'],
             [['id'], 'string', 'max' => 32],
             //[['pinpp'], 'string', 'max' => 14],
             [['surname_latin', 'name_latin', 'patronym_latin'], 'string', 'max' => 50],
             [['birth_date'], 'string', 'max' => 10],
-            [['living_place_latin', 'living_foreign_place', 'work_place', 'living_uzb_place'], 'string', 'max' => 250],
+            [['living_place_latin', 'living_foreign_place', 'work_place'], 'string', 'max' => 250],
             [['doc_seria'], 'string', 'max' => 12],
             [['doc_number', 'living_block', 'living_house', 'living_flat'], 'string', 'max' => 20],
             [['document_div_place'], 'string', 'max' => 128],
@@ -128,7 +126,7 @@ class Kus extends \yii\db\ActiveRecord
             'birth_country_id' => Yii::t('app', 'Tug\'ilgan davlati'),
             'birth_region_id' => Yii::t('app', 'Tug\'ilgan viloyati'),
             'birth_district_id' => Yii::t('app', 'Tug\'ilgan tumani'),
-            'birth_place_id' => Yii::t('app', 'Tug\'ilgan joyi'),
+            //'birth_place_id' => Yii::t('app', 'Tug\'ilgan joyi'),
             //'birth_place_latin' => 'Birth Place Latin',
             'doc_seria' => Yii::t('app', 'Hujjat seriyasi'),
             'document_type_id' => Yii::t('app', 'Hujjat turi'),
@@ -155,7 +153,7 @@ class Kus extends \yii\db\ActiveRecord
             //'doc_adinfo' => 'Doc Adinfo',
             'creation_date' => Yii::t('app', 'creation_date'),
             'foundation_cons_acc' => Yii::t('app', 'Ro`yxatga olishga asos'),
-            'living_uzb_place' => Yii::t('app', 'living_uzb_place'),
+            //'living_uzb_place' => Yii::t('app', 'living_uzb_place'),
             //'senstatus' => 'Senstatus',
             'endate' => Yii::t('app', 'endate'),
             //'reason_id' => 'Reason ID',
