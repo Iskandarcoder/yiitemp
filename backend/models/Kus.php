@@ -66,6 +66,11 @@ class Kus extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public $verifyCode;
+    public $wed_name;
+    public $education;
+    public $education_date;
+    public $which_school;
+
 
 
     public static function tableName()
@@ -93,6 +98,7 @@ class Kus extends \yii\db\ActiveRecord
             [['document_div_place'], 'string', 'max' => 128],
             [['foundation_cons_acc'], 'string', 'max' => 100],
             [['status'], 'string', 'max' => 1],
+            [['wed_name'], 'string'],
 
             //[['adinfo'], 'string', 'max' => 1024],
         ];
@@ -158,6 +164,10 @@ class Kus extends \yii\db\ActiveRecord
             'consular_account_type' => Yii::t('app', 'consular_account_type'),
             'verifyCode' => Yii::t('app', 'Kodni tekshiring'),
             ' Create' => Yii::t('app', 'Anketa yuklash'),
+            'wed_name' => Yii::t('app', 'Turmush o\'rtog\'ining F.I.Sh.'),
+            'education' => Yii::t('app', 'Mutaxassisligi'),
+            'education_date' => Yii::t('app', 'Bitirgan sanasi'),
+            'which_school' => Yii::t('app', 'Qaysi o\'quv yurtini bitirgan'),
                    ];
     }
 

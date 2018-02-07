@@ -59,6 +59,23 @@ $sex_id = [
   '3' => 'Aniqmas',
 
 ];
+
+if(Yii::$app->language =='uz'){
+  $education = [
+  '1' => 'Oliy',
+  '2' => 'O\'rta maxsus',
+  '3' => 'O\'rta',
+  '4' => 'Tugallanmagan o\'rta',
+];
+}else{
+  $education = [
+  '1' => 'Bысший',
+  '2' => 'Среднее специальное',
+  '3' => 'Средний',
+  '4' => 'Не заполнено среднее',
+  ];
+}
+
 if(Yii::$app->language =='ru'){
   $marital_status_id = [
   '1' => 'ХОЛОСТ',
@@ -137,7 +154,7 @@ if(Yii::$app->language =='ru'){
     	<h3 class="step-txt1"><?= Yii::t('app', 'Asosiy ma\'lumotlar'); ?></h3>
           
         <div class="row">
-          <div class="form-group col-sm-6">
+          <div class="form-group col-sm-6 data-toggle='tooltip' data-placement='top' title='Faqat lotin harflarida!'">
                   <?= $form->field($model, 'surname_latin')->textInput(['maxlength' => true]) ?>
           </div>
 
@@ -189,6 +206,12 @@ if(Yii::$app->language =='ru'){
         </div>
 
         <div class="row">
+          <div class="form-group col-sm-12">
+                    <?= $form->field($model, 'wed_name')->textInput(['maxlength' => true]) ?>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="form-group col-sm-6">
                     <?= $form->field($model, 'birth_country_id')->dropDownList($country, ['prompt' => '---']) ?>
           </div>
@@ -212,6 +235,30 @@ if(Yii::$app->language =='ru'){
                             'options' => ['accept' => 'image/*','maxSize'=>'500000'],
                         ]);
                   ?>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-6">
+                  <?= $form->field($model, 'education')->dropDownlist($education, ['prompt' => '---']); ?>
+          </div>
+
+          <div class="form-group col-sm-6">
+                  <?= $form->field($model, 'education_date')
+                    ->widget(DatePicker::classname(), [
+                        'language' => 'ru',
+                        'pluginOptions' => [
+                            'format' => 'yyyy-mm-dd',
+                            'todayHighlight' => true
+                        ],
+                    ]);
+                  ?>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-sm-12">
+                  <?= $form->field($model, 'which_school')->textInput(['maxlength' => true]) ?>
           </div>
         </div>
 
@@ -437,6 +484,8 @@ if(Yii::$app->language =='ru'){
           </div>
         </div>
 
+
+
     </div>
     	   <button id="back" class="btn btn-primary btn-lg" type="button" ><i class="fa fa-chevron-left"></i> <?= Yii::t('app', 'Orqaga'); ?></button>
           <div class="nxt-btn">
@@ -574,7 +623,6 @@ $this->registerJs("
       }
     });
   });
-
   $('#kus-living_place_id').change(function(){
     var thisid = $(this).val();
     $.ajax({
@@ -598,6 +646,7 @@ $this->registerJs("$(document).ready(function($){
     $('.btn-success').hide();
     $('#send').hide();
     $('#back').hide();
+    $('#kus-wed_name').parents('.form-group').hide();
     $('#next').click(function(){            
   var n=step;
      if(step<4)
@@ -621,6 +670,14 @@ $this->registerJs("$(document).ready(function($){
     $('.step-txt').removeClass('text-disable');
         }
       });
+//////////////////////////////////////////////////////////////////////////////////
+$('#kus-marital_status_id').change(function()
+  {
+    if(($(this).val()== 2)||($(this).val()== 6))
+      $('#kus-wed_name').parents('.form-group').show();
+    else
+      $('#kus-wed_name').parents('.form-group').hide();
+    });
 //////////////////////////////////////////////////////////////////////////////////      
  $('.nav-tabs > li > a').click(function() { 
             if($(this).hasClass('disabled')) {

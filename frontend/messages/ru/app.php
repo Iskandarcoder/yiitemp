@@ -83,7 +83,10 @@ return [
     'O`zbekistonda yashagan joyi' => 'Место жительство в Узбекистане',
     'Qo\'shimcha ma\'lumotlar' => 'Допольнителные данные',
     'O`zbekiston Respublikasining horijda doimiy yashovchi fuqarolarini ro`yhatga olish uchun shaxsiy ma\'lumotlarni kiritish' => 'Регистрационная карточка граждан Республики Узбекистан постоянно проживающих за границей',
-
+    'Turmush o\'rtog\'ining F.I.Sh.' => 'Ф.И.Ш. Супруга ',
+    'Mutaxassisligi' => 'Cпециальность',
+    'Bitirgan sanasi' => 'Дата окончания',
+    'Qaysi o\'quv yurtini bitirgan' => 'Окончил учебное заведение',
 
 ];
 ?>
