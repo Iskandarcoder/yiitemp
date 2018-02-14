@@ -15,6 +15,8 @@ use backend\models\SpPlace;
 use backend\models\SpStreet;
 use common\models\CaptchaCode;
 use yii\web\UploadedFile;
+use backend\models\InRelative;
+
 
 /**
  * KusController implements the CRUD actions for Kus model.
@@ -82,8 +84,39 @@ class KusController extends Basecontroller
     {
         $model = new Kus();
         $model->setRandomString();
+        $modelInrelative = [new InRelative];
 
         if ($model->load(Yii::$app->request->post())) {
+
+            $modelInrelative = Model::createMultiple(InRelative::classname());
+            Model::loadMultiple($modelInrelative, Yii::$app->request->post());
+
+            // validate all models
+            $valid = $modelCustomer->validate();
+            $valid = Model::validateMultiple($modelInrelative) && $valid;
+
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+
+                try {
+                    if ($flag = $modelCustomer->save(false)) {
+                        foreach ($modelInrelative as $modelin) {
+                            $modelAddress->customer_id = $modelCustomer->id;
+                            if (! ($flag = $modelin->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $modelCustomer->id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
+                }
+            }
 
             $model->arrival_date = $model->begin_date;
             $model->status = '0';
@@ -107,6 +140,7 @@ class KusController extends Basecontroller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'modelInrelative' => (empty($modelInrelative)) ? [new InRelative] : $modelInrelative
             ]);
         }
     }

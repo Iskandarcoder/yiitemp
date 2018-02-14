@@ -17,6 +17,7 @@ use backend\models\VkuKart;
 use backend\models\SpStreet;
 use yii\captcha\Captcha;
 use kartik\file\FileInput;
+use wbraganca\dynamicform\DynamicFormWidget;
 
 
 /* @var $this yii\web\View */
@@ -101,6 +102,36 @@ if(Yii::$app->language =='ru'){
 ]; 
 }
 
+if(Yii::$app->language =='ru'){
+  $type_relative = [
+  '1' => 'test',
+  '2' => 'test',
+  '3' => 'test',
+  '4' => 'test',
+  '5' => 'НЕ test',
+  '6' => 'test',
+  '7' => 'test',
+  '8' => 'test',
+
+];  
+}else{
+  $type_relative = [
+  '1' => 'Otam',
+  '2' => 'Onam',
+  '3' => 'Akam',
+  '4' => 'Ukam',
+  '5' => 'Opam',
+  '6' => 'Singlim',
+  '7' => 'Turmush o\'rtog\'im',
+  '8' => 'Qaynotam',
+  '9' => 'Qaynonam',
+
+
+]; 
+}
+
+
+
 
 ?>
 <style type="text/css">
@@ -148,7 +179,7 @@ if(Yii::$app->language =='ru'){
         </div>
 </br>
 </br>
-  <?php $form = ActiveForm::begin(); ?>
+  <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
 
 <div class="tab-content">
 
@@ -441,6 +472,70 @@ if(Yii::$app->language =='ru'){
                     ?>
             </div>
         </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+                <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><i class="fa fa-users"></i> O'zbekiston Respublikasidagi yaqin qarindoshlariz </h4>
+          <div style="text-align: right;">
+            <button type="button" style="width: 50px;" title="Qarindoshlarim bor" class="btn btn-primary _inrelativeshow"><i class="glyphicon glyphicon-plus"></i></button>
+            <button type="button" style="width: 50px;" title="Qarindoshlarim yo'q" class="btn btn-danger _inrelativehide"><i class="glyphicon glyphicon-minus"></i></button>
+          </div>
+        </div>
+        <div class="panel-body" id="inrelative">
+             <?php DynamicFormWidget::begin([
+                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
+                'widgetBody' => '.container-items', // required: css class selector
+                'widgetItem' => '.item', // required: css class
+                'limit' => 4, // the maximum times, an element can be cloned (default 999)
+                'min' => 1, // 0 or 1 (default 1)
+                'insertButton' => '.add-item', // css class
+                'deleteButton' => '.remove-item', // css class
+                'model' => $modelInrelative[0],
+                'formId' => 'dynamic-form',
+                'formFields' => [
+                    'type_relative',
+                    'fio',
+                    'address',
+                ],
+            ]); ?>
+
+            <div class="container-items"><!-- widgetContainer -->
+            <?php foreach ($modelInrelative as $i => $modelin): ?>
+                <div class="item panel panel-default"><!-- widgetBody -->
+                    <div class="panel-heading">
+                        <h3 class="panel-title pull-left"><i class="fa fa-user"></i></h3>
+                        <div class="pull-right">
+                            <button type="button" class="add-item btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="remove-item btn btn-danger btn-xs"><i class="glyphicon glyphicon-minus"></i></button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <?php
+                            // necessary for update action.
+                            if (! $modelin->isNewRecord) {
+                                echo Html::activeHiddenInput($modelin, "[{$i}]id");
+                            }
+                        ?>
+                        <?= $form->field($modelin, "[{$i}]type_relative")->dropDownlist($type_relative, ['prompt' => 'Select....']) ?>
+                        <?= $form->field($modelin, "[{$i}]fio")->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($modelin, "[{$i}]address")->textInput(['maxlength' => true]) ?>
+                        
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+            <?php DynamicFormWidget::end(); ?>
+        </div>
+    </div>
+                     
+          </div>
+
+          <div class="form-group col-sm-6" style="border:1px solid red;">
+                     
+          </div>
+        </div>
 
         <div class="row">
           <div class="form-group col-sm-6">
@@ -468,7 +563,7 @@ if(Yii::$app->language =='ru'){
 
 <?php
 $this->registerJs("
-  
+  $('#inrelative').hide();  
   $('#kus-birth_country_id').change(function(){
     var thisid = $(this).val();
     if (thisid != 182) {
@@ -607,6 +702,16 @@ $this->registerJs("
     });
   });
   ////////////////////////////////////////////////////////////////////////////////
+    $('._inrelativeshow').on('click', function(event){
+      
+       $('#inrelative').show();
+    });
+
+    $('._inrelativehide').on('click', function(event){
+      
+       $('#inrelative').hide();
+    });
+    
 ");
 
 
@@ -620,6 +725,7 @@ $this->registerJs("$(document).ready(function($){
   var n=step;
      if(step<4)
          {
+
   n++;
          curStepBtn =$('.nav-tabs > li:nth-of-type('+n+') > a');
   step =n;
@@ -647,6 +753,8 @@ $('#kus-marital_status_id').change(function()
     else
       $('#kus-wed_name').parents('.form-group').hide();
     });
+
+
 //////////////////////////////////////////////////////////////////////////////////      
  $('.nav-tabs > li > a').click(function() { 
             if($(this).hasClass('disabled')) {
