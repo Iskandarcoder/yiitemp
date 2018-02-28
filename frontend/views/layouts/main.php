@@ -30,104 +30,85 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <div class="top-menu">
-  <div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-xs-12">
-      <a href="#"> 
-        <img src="/images/oneidlogo.png" id="oneid">
-        <h5>id.gov.uz orqali avtorizatsiya</h5>
-      </a>
-    </div>
-  
-    <div class="col-sm-6">
+  <div class="top-menu">
+    <div class="container">
       <div class="row">
-<div class="col-sm-offset-6 col-xs-3">
-        
-        <h5 style="color: white;">
-        <?= Html::a('O\'zbekcha', array_merge(
-
-                \Yii::$app->request->get(),
-
-                [\Yii::$app->controller->route, 'language' => 'uz']
-
-              ),
-
-              [
-
-                'class' => 'language'
-
-              ]
-
-            ); ?>
-      </h5>
+        <a href="#">
+          <div class="col-sm-3 idgov">          
+            <img src="/images/oneidlogo.png" id="oneid">
+            <h5><?= Yii::t('app', 'id.gov.uz orqali avtorizatsiya'); ?></h5>          
+          </div>
+        </a>
+  
+        <div class="col-sm-offset-6 col-sm-3"> 
+          <div class="dropdown"  id="mylang">
+            <div aria-expanded="false" aria-haspopup="true" role="button" data-toggle="dropdown" class="dropdown-toggle">
+            <span><b><?= Yii::t('app', 'lang'); ?></b></span> <i class="fa fa-caret-down"></i></div>
+            <ul class="dropdown-menu">
+              <li><?= Html::a('O\'zbekcha', array_merge(
+                                  \Yii::$app->request->get(),
+                                  [\Yii::$app->controller->route, 'language' => 'uz']
+                                ),
+                                [
+                                  'class' => 'language'
+                                ]
+                              ); ?></li>                
+              <li><?= Html::a('Русский', array_merge(
+                                  \Yii::$app->request->get(),
+                                  [\Yii::$app->controller->route, 'language' => 'ru']
+                                ),
+                                [
+                                  'class' => 'language'
+                                ]
+                              ); ?></li>   
+            </ul>                    
+          </div>     
+        </div>
       </div>
-      <div class="col-xs-3">
-      <a href="#">
-        <h5><?= Html::a('Русский', array_merge(
-
-                \Yii::$app->request->get(),
-
-                [\Yii::$app->controller->route, 'language' => 'ru']
-
-              ),
-
-              [
-
-                'class' => 'language'
-
-              ]
-
-            ); ?></h5>
-      </a>
-      </div>
-     </div>
-     </div>
     </div>
   </div>
-</div>
 
-<div id="block-header" class="text-center">
+  <div id="block-header" class="text-center">
     <div class="container">
-        <div class="row">
-                <div class="col-sm-4"><h4>O'ZBEKISTON RESPUBLIKASI</br>TASHQI ISHLAR VAZIRLIGI</h4></div>
-                <div class="col-sm-4"><a href="<?= Url::to(['/']) ?>"><img src="/images/logos.png" class="ramz" /></a></div>
-                <div class="col-sm-4"><h4>INTERAKTIV KONSULLIK</br>XIZMATLARI</h4></div>
+      <div class="row">
+        <div class="col-sm-5"><h4><?= Yii::t('app', 'O\'ZBEKISTON RESPUBLIKASI <br/> TASHQI ISHLAR VAZIRLIGI'); ?></h4></div>
+          <div class="col-sm-2"><a href="<?= Url::to(['/']) ?>"><img src="/images/logos.png" class="ramz" /></a></div>
+          <div class="col-sm-5"><h4><?= Yii::t('app', 'INTERAKTIV KONSULLIK'); ?></br><?= Yii::t('app', 'XIZMATLARI'); ?></h4></div>
         </div>
     </div>
-</div>
+  </div>
   
-<nav class="header_menu navbar navbar-inverse text-center">
-  <div class="container">
- <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>                   
-  </div>
-  <div  class="navbar-collapse collapse"> 
-    <ul  class="nav navbar-nav" id="menu">
-      <div class="col-sm-4">
-        <li><a href="<?= Url::to(['/']) ?>"><i class="fa fa-home"></i> Bosh sahifa</a></li>
-      </div> 
-      <div class="col-sm-4">
-        <li><a href="?action=adresa"><i class="fa fa-fort-awesome"></i> {$menu2}</a></li>
-      </div> 
-      <div class="col-sm-4">
-        <li><a href="#"><i class="fa fa-comments"></i> {$menu3}</a></li>
-      </div> 
-    </ul>
-  </div>
-   </div>
-</nav>
+  <nav class="header_menu navbar navbar-inverse text-center">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>                   
+      </div>
+      <div  class="navbar-collapse collapse"> 
+        <ul  class="nav navbar-nav" id="menu">
+          <div class="col-sm-4">
+            <li><a href="<?= Url::to(['/']) ?>"><i class="fa fa-home"></i> <?= Yii::t('app', 'Bosh sahifa'); ?></a></li>
+          </div> 
+          <div class="col-sm-4">
+            <li><a href="<?= Url::to(['/site/about']);?>"><i class="fa fa-fort-awesome"></i> <?= Yii::t('app', 'Xorijdagi vakolatxonalar'); ?></a></li>
+          </div> 
+          <div class="col-sm-4">
+            <li><a href="<?= Url::to(['/site/question']);?>"><i class="fa fa-comments"></i> <?= Yii::t('app', 'Ko\'p beriladigan savollar'); ?></a></li>
+          </div> 
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     
         <div id="mySidenav" class="sidenav hidden-xs hidden-sm">
-             <a href="?action=sorov" id="about"><p>Опрос</p> <i class="fa fa-check-square-o fa-2x"></i></a> 
-             <a href="?action=liniya" id="blog"><p>Онлайн обращения</p> <i class="fa fa-comments-o fa-2x"></i></a>
-             <a href="?action=pol_ist" id="projects"><p>Полезные ссылки</p> <i class="fa fa-external-link fa-2x"></i></a>
-             <a href="?action=stat" id="contact"><p>Статистика</p> <i class="fa fa-line-chart fa-2x"></i></a>
+             <a href="?action=sorov" id="about"><p><?= Yii::t('app', 'So\'rovnoma'); ?></p> <i class="fa fa-check-square-o fa-2x"></i></a> 
+             <a href="?action=liniya" id="blog"><p><?= Yii::t('app', 'Onlayn murojaat'); ?></p> <i class="fa fa-comments-o fa-2x"></i></a>
+             <a href="?action=pol_ist" id="projects"><p><?= Yii::t('app', 'Foydali manbalar'); ?></p> <i class="fa fa-external-link fa-2x"></i></a>
+             <a href="?action=stat" id="contact"><p><?= Yii::t('app', 'Statistika'); ?></p> <i class="fa fa-line-chart fa-2x"></i></a>
         </div>
         <div id="wrapper">
         <?= $content ?>
@@ -143,18 +124,16 @@ AppAsset::register($this);
 <br />
 <div class="row  text-center">
 <div class="col-sm-4">  
-© 2017 O`zbekiston Respublikasi<br />
-Tashqi ishlar vazirligi <br />
-ATKTIT boshqarmasi
+<?= Yii::t('app', '© 2018 O`zbekiston Respublikasi <br/> Tashqi ishlar vazirligi'); ?>
 <br /><br />
 </div>
-<div class="col-sm-4">
-100029, Toshkent, Islom Karimov ko`chasi,9<br />
-Telefon: (+998 71) 233-45-01<br />
-Faks: (+998 71) 239-15-17
+<div class="col-sm-5">
+<?= Yii::t('app', '100029, Toshkent, Islom Karimov ko`chasi, 9'); ?><br />
+<?= Yii::t('app', 'Telefon: (+998 71) 233-45-01'); ?><br />
+<?= Yii::t('app', 'Faks: (+998 71) 239-15-17'); ?>
 <br /><br />
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <a href=""><i class="fa fa-facebook-square fa-3x"></i></a>
 <a href=""><i class="fa fa-twitter-square fa-3x"></i></a>
 <a href=""><i class="fa fa-facebook-square fa-youtube-square fa-3x"></i></a>
@@ -163,7 +142,7 @@ Faks: (+998 71) 239-15-17
 </div>
 <hr/>
 <div class="row">
-    <div class="col-sm-7"><h5>Agar matnda xatoliklarni aniqlasangiz, ma'muriyatni xabardor qilish uchun xatoliklarni belgilab, Ctrl+Enter tugmalarini bosing</h5></div>
+    <div class="col-sm-7"><h5><?= Yii::t('app', 'Agar matnda xatoliklarni aniqlasangiz, ma\'muriyatni xabardor qilish uchun xatoliklarni belgilab, Ctrl+Enter tugmalarini bosing'); ?></h5></div>
     <div class="col-sm-5">
 <div class="myvidgits">
 <!-- START WWW.UZ TOP-RATING -->
@@ -217,3 +196,5 @@ Faks: (+998 71) 239-15-17
 </html>
 
 <?php $this->endPage() ?>
+
+

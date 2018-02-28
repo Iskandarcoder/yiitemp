@@ -13,6 +13,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use backend\models\Embassy;
+use backend\models\Question;
 
 /**
  * Site controller
@@ -139,7 +141,22 @@ class SiteController extends BaseController
      */
     public function actionAbout()
     {
-        return $this->render('about');
+
+        $embassy = Embassy::find()->orderBy('id ASC')->all();
+
+        return $this->render('about',[
+                'embassy' => $embassy,
+            ]);
+    }
+
+    public function actionQuestion()
+    {
+
+        $question = Question::find()->orderBy('id ASC')->all();
+
+        return $this->render('question',[
+                'question' => $question,
+            ]);
     }
 
     /**

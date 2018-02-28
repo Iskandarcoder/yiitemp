@@ -41,6 +41,7 @@ return [
 	'Sizning murojaatingiz yborildi'=>'Sizning murojaatingiz yborildi',
 	'sendtex'=>'Onlayn-murojaatingiz uchun minnatdorchilik bildiramiz. Reglamentga asosan, barcha shaxsiy ma`lumotlar to`g`ri kiritilgan taqdirda, sizning so\'rovingiz 14 kun ichida ko\'rib chiqilib, rasmiy javob yuboriladi',
 	'CONSULAR SECTION' =>'Konsullik bo\'limi',
+	'lang'=>'O\'zbekcha',
 
 
 ];

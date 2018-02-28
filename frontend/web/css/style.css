@@ -3,7 +3,7 @@ html{
   padding: 0;
 }
 body{
-  margin: 0;
+  margin: 0px;
   padding: 0;
 }
 
@@ -136,7 +136,6 @@ color: #fefefe;
    width: 100%!important;
     background: #596fa6 !important;
     border-top: 3px solid #6379ad!important;
-    overflow: auto!important;
  }
 .header_menu .collapse {
   padding: 0!important;
@@ -158,16 +157,13 @@ color: #fefefe;
 text-decoration: none;
 text-shadow: 0 -1px 0 #000;
 text-decoration: none!important;
-
-}
-.top-menu .col-sm-8{
-  padding-left: 0!important;
-}
-.top-menu .col-sm-4{
-  padding-right: 0!important;
 }
 .top-menu .row{
   margin: 0!important;
+}
+.idgov:hover{
+  background-color: #556a9d;
+  text-decoration: none;
 }
 #oneid{
   width: 38px;
@@ -246,7 +242,8 @@ hr{
   }
   
 .dead {
-  width: 39px;
+  width: 41px;
+  margin: -4px 12px;
 }
 
 .nxt-btn{
@@ -258,9 +255,7 @@ float: left;
 .btn-con{
   padding: 0!important;
 }
-#next,#back,#send {
-  width: 331px!important;
-}
+
 
 .sert-img {
   filter: gray; /* IE6-9 */
@@ -324,3 +319,42 @@ float: left;
   .btn-file i {
     margin-left: 10px;
   }
+
+#mylang {
+  color: #596fa6;
+  background-color: white!important;
+  border:1px solid #ccc;
+  padding:4px 8px!important;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.fa-caret-down{
+  float: right;
+}
+#mylang span {
+  font-size: 14px;
+}
+.dropdown-menu a:hover{
+color: white!important; 
+}
+.accord {
+    margin: 0!important;
+    padding: 0!important;
+}
+.accord p{
+  float: left!important;
+  margin: 0!important;
+}
+.accords {
+  background-color: #eee;
+  padding: 10px;
+  margin: 10px; 
+  border-radius: 8px;
+}
+.accords h5{
+  margin: 0!important;
+}
+.ac_text p{
+  margin-top: 10px!important;
+}
