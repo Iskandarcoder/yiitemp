@@ -22,7 +22,11 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kartik-v/yii2-mpdf": "*",
+<<<<<<< HEAD
         "2amigos/yii2-ckeditor-widget": "^2.1"
+=======
+        "wbraganca/yii2-dynamicform": "*"
+>>>>>>> c8c259ccdde2b62f23b36d31e91a4225fa8367c1
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
