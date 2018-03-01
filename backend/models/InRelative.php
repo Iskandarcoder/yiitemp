@@ -29,7 +29,7 @@ class InRelative extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reg_num', 'type_relative', 'fio', 'address'], 'required'],
+            // [['reg_num', 'type_relative', 'fio', 'address'], 'required'],
             [['type_relative'], 'integer'],
             [['address'], 'string'],
             [['reg_num', 'fio'], 'string', 'max' => 255],
