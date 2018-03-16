@@ -513,7 +513,7 @@ if(Yii::$app->language =='ru'){
                         <?php
                             // necessary for update action.
                             if (! $modelin->isNewRecord) {
-                                echo Html::activeHiddenInput($modelin, "[{$i}]id");
+                                echo Html::activeHiddenInput($modelin, "[{$i}]reg_num");
                             }
                         ?>
                         <?= $form->field($modelin, "[{$i}]type_relative")->dropDownlist($type_relative, ['prompt' => 'Select....']) ?>

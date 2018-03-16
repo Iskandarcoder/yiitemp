@@ -148,6 +148,15 @@ class SiteController extends BaseController
                 'embassy' => $embassy,
             ]);
     }
+     public function actionMap()
+    {
+
+        $embassy = Embassy::find()->orderBy('id ASC')->all();
+
+        return $this->render('map',[
+                'embassy' => $embassy,
+            ]);
+    }
 
     public function actionQuestion()
     {
