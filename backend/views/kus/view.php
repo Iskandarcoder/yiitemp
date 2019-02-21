@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name_latin',
             'patronym_latin',
             'birth_date',
-            'photo',
+            //'photo',
             'sex_id',
             'nationality_id',
             'marital_status_id',

@@ -47,6 +47,7 @@ class KusSearch extends Kus
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['creation_date' => SORT_DESC]],
         ]);
 
         $this->load($params);

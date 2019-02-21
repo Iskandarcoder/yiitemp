@@ -64,10 +64,10 @@ class Kus extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public $verifyCode;
-    public $wed_name;
-    public $education;
-    public $education_date;
-    public $which_school;
+    // public $wed_name;
+    // public $education;
+    // public $education_date;
+    // public $which_school;
 
 
 
@@ -82,23 +82,22 @@ class Kus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['division_id', 'surname_latin', 'name_latin', 'patronym_latin', 'birth_date', 'photo', 'sex_id', 'nationality_id', 'birth_country_id', 'doc_seria', 'document_type_id', 'doc_number', 'living_region_id', 'living_district_id', 'living_foreign_country_id', 'living_foreign_place', 'begin_date', 'marital_status_id'], 'required'],
-            [['division_id', 'sex_id', 'nationality_id', 'marital_status_id', 'birth_country_id', 'birth_region_id', 'birth_district_id', 'document_type_id', 'document_div_id', 'living_country_id', 'living_region_id', 'living_district_id', 'living_place_id', 'living_street_id', 'living_foreign_country_id', 'other_citizenship_id', 'consular_account_type'], 'integer'],
-            [['photo'], 'string'],
-            [['date_begin_document', 'date_endocument', 'begin_date', 'arrival_date', 'creation_date', 'endate'], 'safe'],
+            [['id', 'division_id', 'surname_latin', 'name_latin', 'patronym_latin', 'birth_date', 'photo', 'sex_id', 'nationality_id', 'birth_country_id', 'doc_seria', 'document_type_id', 'doc_number', 'living_country_id', 'living_region_id', 'living_district_id', 'living_foreign_country_id', 'living_foreign_place', 'begin_date', 'arrival_date', 'creation_date', 'senstatus', 'status', 'education', 'education_date'], 'required'],
+            [['reg_num', 'division_id', 'sex_id', 'nationality_id', 'marital_status_id', 'birth_country_id', 'birth_region_id', 'birth_district_id', 'birth_place_id', 'document_type_id', 'document_div_id', 'living_country_id', 'living_region_id', 'living_district_id', 'living_street_id', 'living_foreign_country_id', 'other_citizenship_id', 'senstatus', 'reason_id', 'consular_account_type'], 'integer'],
+            [['photo'], 'string', ],
+            [['date_begin_document', 'date_endocument', 'begin_date', 'arrival_date', 'creation_date', 'endate', 'education_date'], 'safe'],
             [['id'], 'string', 'max' => 32],
-            //[['pinpp'], 'string', 'max' => 14],
-            [['surname_latin', 'name_latin', 'patronym_latin'], 'string', 'max' => 50],
+            // [['pinpp'], 'string', 'max' => 14],
+            [['surname_cyrillic', 'name_cyrillic', 'patronym_cyrillic', 'surname_latin', 'name_latin', 'patronym_latin', 'wed_name', 'education'], 'string', 'max' => 50],
             [['birth_date'], 'string', 'max' => 10],
-            [['living_place_latin', 'living_foreign_place', 'work_place'], 'string', 'max' => 250],
+            [['birth_place_latin', 'living_place_latin', 'living_foreign_place', 'work_place', 'doc_adinfo', 'living_uzb_place'], 'string', 'max' => 250],
             [['doc_seria'], 'string', 'max' => 12],
             [['doc_number', 'living_block', 'living_house', 'living_flat'], 'string', 'max' => 20],
             [['document_div_place'], 'string', 'max' => 128],
             [['foundation_cons_acc'], 'string', 'max' => 100],
             [['status'], 'string', 'max' => 1],
-            [['wed_name'], 'string'],
-
-            //[['adinfo'], 'string', 'max' => 1024],
+            // [['adinfo'], 'string', 'max' => 1024],
+            [['which_school'], 'string', 'max' => 255],
         ];
     }
 
@@ -138,14 +137,14 @@ class Kus extends \yii\db\ActiveRecord
             'living_country_id' => Yii::t('app', 'Yashash mamlakati'),
             'living_region_id' => Yii::t('app', 'Yashash viloyati'),
             'living_district_id' => Yii::t('app', 'Yashash tumani'),
-            'living_place_id' => Yii::t('app', 'Yashash mahallasi'),
+            //'living_place_id' => Yii::t('app', 'Yashash mahallasi'),
             'living_street_id' => Yii::t('app', 'Yashash ko\'chasi'),
             'living_block' => Yii::t('app', 'Korpus'),
             'living_house' => Yii::t('app', 'Uy'),
             'living_flat' => Yii::t('app', 'Honadon'),
-            'living_place_latin' => Yii::t('app', 'O`zbekistondagi manzili'),
+            'living_place_latin' => Yii::t('app', 'O`zbekistondagi manzili (ro\'yhatda to\'liq bo\'lmasa)'),
             'living_foreign_country_id' => Yii::t('app', 'Kelgan davlati'),
-            'living_foreign_place' => Yii::t('app', 'Chet eldagi manzili'),
+            'living_foreign_place' => Yii::t('app', 'Chet eldagi manzili / Telefon raqami'),
             'begin_date' => Yii::t('app', 'Kelgan sanasi'),
             'work_place' => Yii::t('app', 'Ish joyi va lavozimi'),
             'other_citizenship_id' => Yii::t('app', 'Chet el fuqaroligini olganligi'),
@@ -215,9 +214,64 @@ class Kus extends \yii\db\ActiveRecord
         return $this->hasOne(SpPlase::className(), ['sp_id' => 'birth_place_id']);
     }
 
-     public function getStreet()
+    public function getAdstreet()
     {
         return $this->hasOne(SpStreet::className(), ['sp_id' => 'living_street_id']);
     }
+
+    public function getInRelative()
+    {
+        return $this->hasMany(InRelative::className(), ['kus_id' => 'id']);
+    }
+
+    public function getOutRelative()
+    {
+        return $this->hasMany(OutRelative::className(), ['kus_id' => 'id']);
+    }
+
+    public function getNation()
+    {
+        return $this->hasOne(SpNation::className(), ['sp_id' => 'nationality_id']);
+    }
+
+     public function getTeducation()
+    {
+        return $this->hasOne(Education::className(), ['id' => 'education']);
+    }
+    public function getAdregion()
+    {
+        return $this->hasOne(SpRegion::className(), ['sp_id' => 'living_region_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAddistrict()
+    {
+        return $this->hasOne(SpDistrict::className(), ['sp_id' => 'living_district_id']);
+    }
+
+    public function getAdplace()
+    {
+        return $this->hasOne(SpPlace::className(), ['sp_id' => 'living_place_id']);
+    }
+
+    public function getDoctype()
+    {
+        return $this->hasOne(SpDoctype::className(), ['sp_id' => 'document_type_id']);
+    }
+    
+    public function getDivision()
+    {
+        return $this->hasOne(SpDivision::className(), ['sp_id' => 'division_id']);
+    }
+
+    public function getDivisionDoc()
+    {
+        return $this->hasOne(SpDivision::className(), ['sp_id' => 'document_div_id']);
+    }
+
+    
+
 
 }

@@ -8,10 +8,8 @@ use Yii;
  * This is the model class for table "education".
  *
  * @property integer $id
- * @property string $reg_num
- * @property string $type_edu
- * @property string $end_date
- * @property string $name
+ * @property string $uz_type_edu
+ * @property string $ru_type_edu
  */
 class Education extends \yii\db\ActiveRecord
 {
@@ -29,10 +27,8 @@ class Education extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reg_num', 'type_edu', 'end_date', 'name'], 'required'],
-            [['end_date'], 'safe'],
-            [['name'], 'string'],
-            [['reg_num', 'type_edu'], 'string', 'max' => 255],
+            [['uz_type_edu', 'ru_type_edu'], 'required'],
+            [['uz_type_edu', 'ru_type_edu'], 'string', 'max' => 50],
         ];
     }
 
@@ -43,10 +39,8 @@ class Education extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'reg_num' => Yii::t('app', 'Reg Num'),
-            'type_edu' => Yii::t('app', 'Type Edu'),
-            'end_date' => Yii::t('app', 'End Date'),
-            'name' => Yii::t('app', 'Name'),
+            'uz_type_edu' => Yii::t('app', 'Mutaxassisligi'),
+            'ru_type_edu' => Yii::t('app', 'Mutaxassisligi'),
         ];
     }
 }

@@ -15,6 +15,8 @@ use backend\models\SpDoctype;
 use backend\models\SpDivision;
 use backend\models\VkuKart;
 use backend\models\SpStreet;
+use backend\models\Education;
+use backend\models\TypeRelative;
 use yii\captcha\Captcha;
 use kartik\file\FileInput;
 use wbraganca\dynamicform\DynamicFormWidget;
@@ -24,13 +26,16 @@ use wbraganca\dynamicform\DynamicFormWidget;
 /* @var $model backend\models\Kus */
 /* @var $form yii\widgets\ActiveForm */
 $lang = Yii::$app->language;
-
 $country = [];
+
 $living_regions = [];
 
-  $country = SpCountry::find()->all();
-  $country = ArrayHelper::map($country, 'sp_id','sp_name_'.Yii::$app->language);
+  // $country = SpCountry::find()->all();
+  // $country = ArrayHelper::map($country, 'sp_id','sp_name_'.Yii::$app->language);
 // vd($country);
+  $country = [];
+  $country = SpCountry::find()->orderBy(new \yii\db\Expression('if(id=182, 0, 1)'))->all();
+  $country = ArrayHelper::map($country, 'sp_id','sp_name_'.Yii::$app->language);
   $living_regions = SpRegion::find()->all();
   $living_regions = ArrayHelper::map($living_regions, 'sp_id','sp_name_'.Yii::$app->language);
 
@@ -54,7 +59,35 @@ if ($model->living_street_id) {
   $street = SpStreet::find()->where(['sp_place' => $model->living_street_id])->asArray()->all();
 }
 
+
+$spdistrict_living = [];
+if ($model->living_region_id) {
+  $spdistrict_living = SpDistrict::find()->where(['sp_region' => $model->living_region_id])->asArray()->all();
+}
+
+$spplace_living = [];
+if ($model->living_place_id) {
+  $spplace_living = SpPlace::find()->where(['sp_district' => $model->living_place_id])->asArray()->all();
+}
+
+$street_living = [];
+if ($model->living_street_id) {
+  $street_living = SpStreet::find()->where(['sp_district' => $model->living_street_id])->asArray()->all();
+}
+
+if(Yii::$app->language =='ru'){
 $sex_id = [
+
+  '1' => 'МУЖ',
+
+  '2' => 'ЖЕН',
+
+  '3' => 'НЕОПРЕДЕЛЕН',
+
+];
+  
+}else{
+  $sex_id = [
 
   '1' => 'Erkak',
 
@@ -63,22 +96,9 @@ $sex_id = [
   '3' => 'Aniqmas',
 
 ];
-
-if(Yii::$app->language =='uz'){
-  $education = [
-  '1' => 'Oliy',
-  '2' => 'O\'rta maxsus',
-  '3' => 'O\'rta',
-  '4' => 'Tugallanmagan o\'rta',
-];
-}else{
-  $education = [
-  '1' => 'Bысший',
-  '2' => 'Среднее специальное',
-  '3' => 'Средний',
-  '4' => 'Не заполнено среднее',
-  ];
 }
+
+
 
 if(Yii::$app->language =='ru'){
   $marital_status_id = [
@@ -102,33 +122,6 @@ if(Yii::$app->language =='ru'){
 ]; 
 }
 
-if(Yii::$app->language =='ru'){
-  $type_relative = [
-  '1' => 'test',
-  '2' => 'test',
-  '3' => 'test',
-  '4' => 'test',
-  '5' => 'НЕ test',
-  '6' => 'test',
-  '7' => 'test',
-  '8' => 'test',
-
-];  
-}else{
-  $type_relative = [
-  '1' => 'Otam',
-  '2' => 'Onam',
-  '3' => 'Akam',
-  '4' => 'Ukam',
-  '5' => 'Opam',
-  '6' => 'Singlim',
-  '7' => 'Turmush o\'rtog\'im',
-  '8' => 'Qaynotam',
-  '9' => 'Qaynonam',
-
-
-]; 
-}
 
 
 
@@ -144,7 +137,11 @@ if(Yii::$app->language =='ru'){
   .fileinput-remove-button {
     display: none;
   }
+  .file-drop-zone-title{
+    display: none;
+  }
 </style>
+
 
 <div class="container well well-lg">
  <h4><?= Yii::t('app', 'O`zbekiston Respublikasining horijda doimiy yashovchi fuqarolarini ro`yhatga olish uchun shaxsiy ma\'lumotlarni kiritish'); ?></h4>
@@ -218,6 +215,7 @@ if(Yii::$app->language =='ru'){
                 <?= $form->field($model, 'sex_id')->dropDownlist($sex_id, ['prompt' => '---']); ?>
           </div>
         </div>
+        
 
         <div class="row">
           <div class="form-group col-sm-6">
@@ -261,7 +259,10 @@ if(Yii::$app->language =='ru'){
           </div>
  
           <div class="form-group col-sm-6">
-                  <?= $form->field($model, 'education')->dropDownlist($education, ['prompt' => '---']); ?>
+                  <?= $form->field($model, 'education')->dropDownList(
+                    ArrayHelper::map(Education::find()->all(), 'id',$lang.'_type_edu'),
+                    ['prompt'=>'------']
+                  ) ?>
           </div>
         </div>
 
@@ -314,11 +315,11 @@ if(Yii::$app->language =='ru'){
           </div>
           
           <div class="form-group col-sm-2">
-                    <?= $form->field($model, 'doc_seria')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'doc_seria')->textInput(['maxlength' => true, 'class' => 'form-control seria', 'style'=>'text-transform: uppercase;']) ?>
           </div>
         
           <div class="form-group col-sm-4">
-                    <?= $form->field($model, 'doc_number')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'doc_number')->textInput(['maxlength' => true, 'class' => 'form-control pasport']) ?>
           </div>
         </div>
          
@@ -377,30 +378,29 @@ if(Yii::$app->language =='ru'){
           </div>
           
           <div class="form-group col-sm-6">
-                    <?= $form->field($model, 'living_district_id')->dropDownList(ArrayHelper::map($spdistrict, 'sp_id','sp_name_'.Yii::$app->language)) ?>
+                    <?= $form->field($model, 'living_district_id')->dropDownList(ArrayHelper::map($spdistrict_living, 'sp_id','sp_name_'.Yii::$app->language)) ?>
           </div>
         </div>
 
         <div class="row">
+
           <div class="form-group col-sm-6">
-                    <?= $form->field($model, 'living_place_id')->dropDownList(ArrayHelper::map($spplace, 'sp_id','sp_name_'.Yii::$app->language)) ?>
+                    <?= $form->field($model, 'living_street_id')->dropDownList(ArrayHelper::map($street_living, 'sp_id','sp_name_'.Yii::$app->language)) ?>
           </div>
 
           <div class="form-group col-sm-6">
-                    <?= $form->field($model, 'living_street_id')->dropDownList(ArrayHelper::map($street, 'sp_id','sp_name_'.Yii::$app->language)) ?>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-sm-4">
                       <?= $form->field($model, 'living_block')->textInput(['maxlength' => true]) ?>
           </div>
+        </div>
 
-          <div class="form-group col-sm-4">
+        <div class="row">
+          
+
+          <div class="form-group col-sm-6">
                      <?= $form->field($model, 'living_house')->textInput(['maxlength' => true]) ?>
           </div>
           
-          <div class="form-group col-sm-4">
+          <div class="form-group col-sm-6">
                      <?= $form->field($model, 'living_flat')->textInput(['maxlength' => true]) ?>
           </div>
         </div>
@@ -458,7 +458,7 @@ if(Yii::$app->language =='ru'){
         <div class="row">
           <div class="form-group col-sm-12">
                    <?= $form->field($model, 'division_id')->widget(Select2::classname(), [
-                          'data' => ArrayHelper::map(VkuKart::find()->all(), 'id', 'elchihona_qn_'.Yii::$app->language),
+                          'data' => ArrayHelper::map(SpDivision::find()->where(['sp_idfirst' => 1])->all(), 'sp_id', 'sp_name_'.Yii::$app->language),
                           'language' => 'ru',
                           'options' => ['placeholder' => 'Выберите Вид ...'],
                           'pluginOptions' => [
@@ -474,12 +474,13 @@ if(Yii::$app->language =='ru'){
           <div class="form-group col-sm-6">
                 <div class="panel panel-default">
         <div class="panel-heading">
-          <h4><i class="fa fa-users"></i> O'zbekiston Respublikasidagi yaqin qarindoshlariz </h4>
+          <h4><i class="fa fa-users"></i> O'zbekiston Respublikasidagi yaqin qarindoshlaringiz </h4>
           <div style="text-align: right;">
             <button type="button" style="width: 50px;" title="Qarindoshlarim bor" class="btn btn-primary _inrelativeshow"><i class="glyphicon glyphicon-plus"></i></button>
             <button type="button" style="width: 50px;" title="Qarindoshlarim yo'q" class="btn btn-danger _inrelativehide"><i class="glyphicon glyphicon-minus"></i></button>
           </div>
         </div>
+
         <div class="panel-body" id="inrelative">
              <?php DynamicFormWidget::begin([
                 'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
@@ -512,11 +513,12 @@ if(Yii::$app->language =='ru'){
                     <div class="panel-body">
                         <?php
                             // necessary for update action.
-                            if (! $modelin->isNewRecord) {
-                                echo Html::activeHiddenInput($modelin, "[{$i}]reg_num");
+                            if (!$modelin->isNewRecord) {
+                                echo Html::activeHiddenInput($modelin, "[{$i}]id");
                             }
                         ?>
-                        <?= $form->field($modelin, "[{$i}]type_relative")->dropDownlist($type_relative, ['prompt' => 'Select....']) ?>
+                        
+                        <?= $form->field($modelin, "[{$i}]type_relative")->dropDownlist(ArrayHelper::map(TypeRelative::find()->all(), 'id',$lang.'_type_relative'),['prompt' => 'Select....']) ?>
                         <?= $form->field($modelin, "[{$i}]fio")->textInput(['maxlength' => true]) ?>
                         <?= $form->field($modelin, "[{$i}]address")->textInput(['maxlength' => true]) ?>
                         
@@ -529,8 +531,65 @@ if(Yii::$app->language =='ru'){
     </div>
                      
           </div>
+        <!-- O'zbekiston tashqarisidagi qarindoshlari -->
+          <div class="form-group col-sm-6">
+                <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><i class="fa fa-users"></i> Chet eldagi yaqin qarindoshlaringiz </h4>
+          <div style="text-align: right;">
+            <button type="button" style="width: 50px;" title="Qarindoshlarim bor" class="btn btn-primary _inrelativeshow1"><i class="glyphicon glyphicon-plus"></i></button>
+            <button type="button" style="width: 50px;" title="Qarindoshlarim yo'q" class="btn btn-danger _inrelativehide1"><i class="glyphicon glyphicon-minus"></i></button>
+          </div>
+        </div>
+        <div class="panel-body" id="inrelative1">
+         
+             <?php DynamicFormWidget::begin([
+                'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
+                'widgetBody' => '.container-items', // required: css class selector
+                'widgetItem' => '.item', // required: css class
+                'limit' => 4, // the maximum times, an element can be cloned (default 999)
+                'min' => 1, // 0 or 1 (default 1)
+                'insertButton' => '.add-item', // css class
+                'deleteButton' => '.remove-item', // css class
+                'model' => $modelOutrelative[0],
+                'formId' => 'dynamic-form',
+                'formFields' => [
+                    'type_relative',
+                    'fio',
+                    'address',
+                ],
+            ]); ?>
 
-          <div class="form-group col-sm-6" style="border:1px solid red;">
+            <div class="container-items"><!-- widgetContainer -->
+            <?php foreach ($modelOutrelative as $i => $modelout): ?>
+                <div class="item panel panel-default"><!-- widgetBody -->
+                    <div class="panel-heading">
+                        <h3 class="panel-title pull-left"><i class="fa fa-user"></i></h3>
+                        <div class="pull-right">
+                            <button type="button" class="add-item btn btn-success btn-xs"><i class="glyphicon glyphicon-plus"></i></button>
+                            <button type="button" class="remove-item btn btn-danger btn-xs"><i class="glyphicon glyphicon-minus"></i></button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <?php
+                            // necessary for update action.
+                            if (!$modelout->isNewRecord) {
+                                echo Html::activeHiddenInput($modelout, "[{$i}]id");
+                            }
+                        ?>
+                        
+                        <?= $form->field($modelout, "[{$i}]type_relative")->dropDownlist(ArrayHelper::map(TypeRelative::find()->all(), 'id',$lang.'_type_relative'),['prompt' => 'Select....']) ?>
+                        <?= $form->field($modelout, "[{$i}]fio")->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($modelout, "[{$i}]address")->textInput(['maxlength' => true]) ?>
+                        
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            </div>
+            <?php DynamicFormWidget::end(); ?>
+        </div>
+    </div>
                      
           </div>
         </div>
@@ -546,6 +605,7 @@ if(Yii::$app->language =='ru'){
 
 
     </div>
+
     <div class="row">
       <div class="col-sm-4">
     	   <button id="back" class="btn btn-primary btn-lg" type="button" ><i class="fa fa-chevron-left"></i> <?= Yii::t('app', 'Orqaga'); ?></button>
@@ -560,10 +620,11 @@ if(Yii::$app->language =='ru'){
   <?php ActiveForm::end(); ?>
 
 </div>
-
+</div>
 <?php
 $this->registerJs("
-  $('#inrelative').hide();  
+  $('#inrelative').hide();
+  $('#inrelative1').hide();  
   $('#kus-birth_country_id').change(function(){
     var thisid = $(this).val();
     if (thisid != 182) {
@@ -687,7 +748,7 @@ $this->registerJs("
       }
     });
   });
-  $('#kus-living_place_id').change(function(){
+  $('#kus-living_district_id').change(function(){
     var thisid = $(this).val();
     $.ajax({
       type: 'GET',
@@ -711,6 +772,20 @@ $this->registerJs("
       
        $('#inrelative').hide();
     });
+
+    ////////////////////////////////////////////////////////////////////////////////
+    $('._inrelativeshow1').on('click', function(event){
+      
+       $('#inrelative1').show();
+    });
+
+    $('._inrelativehide1').on('click', function(event){
+      
+       $('#inrelative1').hide();
+    });
+
+
+   
     
 ");
 
@@ -721,6 +796,7 @@ $this->registerJs("$(document).ready(function($){
     $('#send').hide();
     $('#back').hide();
     $('#kus-wed_name').parents('.form-group').hide();
+    $('#kus-which_school').parents('.form-group').hide();
     $('#next').click(function(){            
   var n=step;
      if(step<4)
@@ -755,7 +831,19 @@ $('#kus-marital_status_id').change(function()
     });
 
 
-//////////////////////////////////////////////////////////////////////////////////      
+//////////////////////////////////////////////////////////////////////////////////   
+
+//////////////////////////////////////////////////////////////////////////////////
+$('#kus-education').change(function()
+  {
+    if(($(this).val()== 1)||($(this).val()== 6))
+      $('#kus-which_school').parents('.form-group').show();
+    else
+      $('#kus-which_school').parents('.form-group').hide();
+    });
+
+
+//////////////////////////////////////////////////////////////////////////////////    
  $('.nav-tabs > li > a').click(function() { 
             if($(this).hasClass('disabled')) {
             return false;

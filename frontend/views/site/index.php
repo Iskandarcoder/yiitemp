@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-sm-3">
-    <a href="?action=sert_doc">
+    <a href="<?= Url::to(['/anketa-new/index'])?>">
       <button type="button" class="btn btn-labeled btn-lg btn-info">
         <span class="btn-label"><i class="fa fa-2x fa-file-text-o"></i></span><?= Yii::t('app', 'Sertifikat</br>olish'); ?>
         <div class="overlay">
@@ -17,7 +17,7 @@
   </div>
 
   <div class="col-sm-3">
-    <a href="?action=vku_doc">
+    <a href="<?= Url::to(['/vkus/index'])?>">
       <button type="button" class="btn btn-labeled btn-lg btn-info">
         <span class="btn-label"><i class="fa fa-2x fa-vcard-o"></i></span><?= Yii::t('app', 'Vaqtincha</br>konsullik</br>hisobi'); ?>
         <div class="overlay">

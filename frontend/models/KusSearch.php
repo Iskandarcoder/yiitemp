@@ -18,7 +18,7 @@ class KusSearch extends Kus
     public function rules()
     {
         return [
-            [['id', 'pinpp', 'surname_cyrillic', 'name_cyrillic', 'patronym_cyrillic', 'surname_latin', 'name_latin', 'patronym_latin', 'birth_date', 'photo', 'birth_place_latin', 'doc_seria', 'doc_number', 'date_begin_document', 'date_endocument', 'document_div_place', 'living_block', 'living_house', 'living_flat', 'living_place_latin', 'living_foreign_place', 'begin_date', 'arrival_date', 'work_place', 'doc_adinfo', 'creation_date', 'foundation_cons_acc', 'living_uzb_place', 'endate', 'status', 'adinfo'], 'safe'],
+            [['id', 'pinpp', 'surname_cyrillic', 'name_cyrillic', 'patronym_cyrillic', 'surname_latin', 'name_latin', 'patronym_latin', 'birth_date', 'photo', 'birth_place_latin', 'doc_seria', 'doc_number', 'date_begin_document', 'date_endocument', 'document_div_place', 'living_block', 'living_house', 'living_flat', 'living_place_latin', 'living_foreign_place', 'begin_date', 'arrival_date', 'work_place', 'doc_adinfo', 'creation_date', 'foundation_cons_acc', 'living_uzb_place', 'endate', 'status', 'adinfo', 'wed_name', 'education', 'education_date', 'which_school'], 'safe'],
             [['reg_num', 'division_id', 'sex_id', 'nationality_id', 'marital_status_id', 'birth_country_id', 'birth_region_id', 'birth_district_id', 'birth_place_id', 'document_type_id', 'document_div_id', 'living_country_id', 'living_region_id', 'living_district_id', 'living_place_id', 'living_street_id', 'living_foreign_country_id', 'other_citizenship_id', 'senstatus', 'reason_id', 'consular_account_type'], 'integer'],
         ];
     }
@@ -86,9 +86,10 @@ class KusSearch extends Kus
             'endate' => $this->endate,
             'reason_id' => $this->reason_id,
             'consular_account_type' => $this->consular_account_type,
+            'education_date' => $this->education_date,
         ]);
 
-        $query->andFilterWhere(['like', 'id', $this->id])
+         $query->andFilterWhere(['like', 'id', $this->id])
             ->andFilterWhere(['like', 'pinpp', $this->pinpp])
             ->andFilterWhere(['like', 'surname_cyrillic', $this->surname_cyrillic])
             ->andFilterWhere(['like', 'name_cyrillic', $this->name_cyrillic])
@@ -112,7 +113,10 @@ class KusSearch extends Kus
             ->andFilterWhere(['like', 'foundation_cons_acc', $this->foundation_cons_acc])
             ->andFilterWhere(['like', 'living_uzb_place', $this->living_uzb_place])
             ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'adinfo', $this->adinfo]);
+            ->andFilterWhere(['like', 'adinfo', $this->adinfo])
+            ->andFilterWhere(['like', 'wed_name', $this->wed_name])
+            ->andFilterWhere(['like', 'education', $this->education])
+            ->andFilterWhere(['like', 'which_school', $this->which_school]);
 
         return $dataProvider;
     }

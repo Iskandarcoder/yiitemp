@@ -1,8 +1,18 @@
-yii2-mpdf
-=============
+<h1 align="center">
+    <a href="http://demos.krajee.com" title="Krajee Demos" target="_blank">
+        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/krajee-logo-b.png" alt="Krajee Logo"/>
+    </a>
+    <br>
+    yii2-mpdf
+    <hr>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DTP3NZQ6G2AYU"
+       title="Donate via Paypal" target="_blank">
+        <img src="http://kartik-v.github.io/bootstrap-fileinput-samples/samples/donate.png" alt="Donate"/>
+    </a>
+</h1>
 
 [![Stable Version](https://poser.pugx.org/kartik-v/yii2-mpdf/v/stable)](https://packagist.org/packages/kartik-v/yii2-mpdf)
-[![Untable Version](https://poser.pugx.org/kartik-v/yii2-mpdf/v/unstable)](https://packagist.org/packages/kartik-v/yii2-mpdf)
+[![Unstable Version](https://poser.pugx.org/kartik-v/yii2-mpdf/v/unstable)](https://packagist.org/packages/kartik-v/yii2-mpdf)
 [![License](https://poser.pugx.org/kartik-v/yii2-mpdf/license)](https://packagist.org/packages/kartik-v/yii2-mpdf)
 [![Total Downloads](https://poser.pugx.org/kartik-v/yii2-mpdf/downloads)](https://packagist.org/packages/kartik-v/yii2-mpdf)
 [![Monthly Downloads](https://poser.pugx.org/kartik-v/yii2-mpdf/d/monthly)](https://packagist.org/packages/kartik-v/yii2-mpdf)
@@ -71,7 +81,7 @@ public function actionReport() {
         'content' => $content,  
         // format content from your own css file if needed or use the
         // enhanced bootstrap css built by Krajee for mPDF formatting 
-        'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+        'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
         // any css to be embedded if required
         'cssInline' => '.kv-heading-1{font-size:18px}', 
          // set mPDF properties on the fly
@@ -120,4 +130,4 @@ For other usage and details, read the detailed [documentation](http://demos.kraj
 
 ## License
 
-**yii2-mpdf** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
+**yii2-mpdf** is released under the BSD-3-Clause License. See the bundled `LICENSE.md` for details.

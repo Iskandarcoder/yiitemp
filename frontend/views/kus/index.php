@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                    <br />
                   <div class="text-center">
-            <button id="next" class="btn btn-info btn-lg" disabled=true onclick=location.href="<?= Url::to(['/kus/create'])?>"> Davom etish</button>
+                    <button id="next" class="btn btn-info btn-lg" disabled=true onclick=location.href="<?= Url::to(['/kus/create'])?>"> Davom etish</button>
                   </div>
        </div>           
                   

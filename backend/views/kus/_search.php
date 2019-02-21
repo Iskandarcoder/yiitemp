@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\KusSearch */
@@ -15,27 +17,58 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <?= $form->field($model, 'id') ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'reg_num') ?>
+    <!-- <?= $form->field($model, 'reg_num') ?>
 
     <?= $form->field($model, 'division_id') ?>
 
     <?= $form->field($model, 'pinpp') ?>
 
-    <?= $form->field($model, 'surname_cyrillic') ?>
+    <?= $form->field($model, 'surname_cyrillic') ?> -->
 
     <?php // echo $form->field($model, 'name_cyrillic') ?>
 
     <?php // echo $form->field($model, 'patronym_cyrillic') ?>
-
-    <?php // echo $form->field($model, 'surname_latin') ?>
-
-    <?php // echo $form->field($model, 'name_latin') ?>
-
-    <?php // echo $form->field($model, 'patronym_latin') ?>
-
-    <?php // echo $form->field($model, 'birth_date') ?>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <?php  echo $form->field($model, 'surname_latin') ?>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <?php  echo $form->field($model, 'name_latin') ?>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <?php  echo $form->field($model, 'patronym_latin') ?>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <?= $form->field($model, 'birth_date')
+                ->widget(DatePicker::classname(), [
+                    'language' => 'ru',
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'todayHighlight' => true
+                    ],
+                ]);
+            ?>
+            
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <?php  echo $form->field($model, 'doc_seria') ?>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <?php  echo $form->field($model, 'doc_number') ?>
+        </div>
+    </div>
 
     <?php // echo $form->field($model, 'photo') ?>
 
@@ -55,11 +88,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'birth_place_latin') ?>
 
-    <?php // echo $form->field($model, 'doc_seria') ?>
 
     <?php // echo $form->field($model, 'document_type_id') ?>
 
-    <?php // echo $form->field($model, 'doc_number') ?>
 
     <?php // echo $form->field($model, 'date_begin_document') ?>
 
@@ -121,7 +152,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

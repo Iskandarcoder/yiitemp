@@ -12,17 +12,6 @@ return array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
     ),
   ),
-
-  'yiisoft/yii2-gii' => 
-  array (
-    'name' => 'yiisoft/yii2-gii',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii',
-    ),
-  ),
-
   'yiisoft/yii2-faker' => 
   array (
     'name' => 'yiisoft/yii2-faker',
@@ -32,7 +21,6 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
-
   'kartik-v/yii2-krajee-base' => 
   array (
     'name' => 'kartik-v/yii2-krajee-base',
@@ -42,7 +30,6 @@ return array (
       '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
     ),
   ),
-
   'kartik-v/yii2-widget-datepicker' => 
   array (
     'name' => 'kartik-v/yii2-widget-datepicker',
@@ -52,7 +39,6 @@ return array (
       '@kartik/date' => $vendorDir . '/kartik-v/yii2-widget-datepicker',
     ),
   ),
-
   'kartik-v/yii2-widget-select2' => 
   array (
     'name' => 'kartik-v/yii2-widget-select2',
@@ -62,27 +48,6 @@ return array (
       '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2',
     ),
   ),
-
-  'kartik-v/yii2-widget-fileinput' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-fileinput',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
-    ),
-  ),
-
-  'kartik-v/yii2-mpdf' => 
-  array (
-    'name' => 'kartik-v/yii2-mpdf',
-    'version' => '1.0.1.0',
-    'alias' => 
-    array (
-      '@kartik/mpdf' => $vendorDir . '/kartik-v/yii2-mpdf',
-    ),
-  ),
-
   'yiisoft/yii2-bootstrap' => 
   array (
     'name' => 'yiisoft/yii2-bootstrap',
@@ -91,26 +56,6 @@ return array (
     array (
       '@yii/bootstrap' => $vendorDir . '/yiisoft/yii2-bootstrap',
     ),
-  ),
-
-  'yiisoft/yii2-debug' => 
-  array (
-    'name' => 'yiisoft/yii2-debug',
-    'version' => '2.0.12.0',
-    'alias' => 
-    array (
-      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
-    ),
-  ),
-
-  '2amigos/yii2-ckeditor-widget' => 
-  array (
-    'name' => '2amigos/yii2-ckeditor-widget',
-    'version' => '2.1.0.0',
-    'alias' => 
-    array (
-      '@dosamigos/ckeditor' => $vendorDir . '/2amigos/yii2-ckeditor-widget/src',
-    ),  
   ),
   'wbraganca/yii2-dynamicform' => 
   array (
@@ -121,5 +66,76 @@ return array (
       '@wbraganca/dynamicform' => $vendorDir . '/wbraganca/yii2-dynamicform',
     ),
   ),
-
+  'yiisoft/yii2-debug' => 
+  array (
+    'name' => 'yiisoft/yii2-debug',
+    'version' => '2.0.13.0',
+    'alias' => 
+    array (
+      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
+    ),
+  ),
+  'yiisoft/yii2-gii' => 
+  array (
+    'name' => 'yiisoft/yii2-gii',
+    'version' => '2.0.6.0',
+    'alias' => 
+    array (
+      '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii',
+    ),
+  ),
+  'mdmsoft/yii2-admin' => 
+  array (
+    'name' => 'mdmsoft/yii2-admin',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@mdm/admin' => $vendorDir . '/mdmsoft/yii2-admin',
+    ),
+  ),
+  'kartik-v/yii2-widget-timepicker' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-timepicker',
+    'version' => '1.0.3.0',
+    'alias' => 
+    array (
+      '@kartik/time' => $vendorDir . '/kartik-v/yii2-widget-timepicker',
+    ),
+  ),
+  '2amigos/yii2-date-picker-widget' => 
+  array (
+    'name' => '2amigos/yii2-date-picker-widget',
+    'version' => '1.0.7.0',
+    'alias' => 
+    array (
+      '@dosamigos/datepicker' => $vendorDir . '/2amigos/yii2-date-picker-widget/src',
+    ),
+  ),
+  'kartik-v/yii2-mpdf' => 
+  array (
+    'name' => 'kartik-v/yii2-mpdf',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@kartik/mpdf' => $vendorDir . '/kartik-v/yii2-mpdf/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-fileinput' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-fileinput',
+    'version' => '1.0.6.0',
+    'alias' => 
+    array (
+      '@kartik/file' => $vendorDir . '/kartik-v/yii2-widget-fileinput',
+    ),
+  ),
+  'kartik-v/yii2-date-range' => 
+  array (
+    'name' => 'kartik-v/yii2-date-range',
+    'version' => '1.6.9.0',
+    'alias' => 
+    array (
+      '@kartik/daterange' => $vendorDir . '/kartik-v/yii2-date-range',
+    ),
+  ),
 );

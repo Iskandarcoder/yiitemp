@@ -6,6 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use backend\models\SpDivision;
+
 
 /**
  * User model
@@ -185,5 +187,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getDivision()
+    {
+        return $this->hasOne(SpDivision::className(), ['sp_id' => 'dvision_id']);
     }
 }

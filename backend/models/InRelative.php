@@ -8,7 +8,9 @@ use Yii;
  * This is the model class for table "in_relative".
  *
  * @property integer $id
- * @property string $reg_num
+ * @property string $kus_id
+ * @property string $vkus_id
+ * @property string $sert_id
  * @property integer $type_relative
  * @property string $fio
  * @property string $address
@@ -29,10 +31,9 @@ class InRelative extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            // [['reg_num', 'type_relative', 'fio', 'address'], 'required'],
             [['type_relative'], 'integer'],
             [['address'], 'string'],
-            [['reg_num', 'fio'], 'string', 'max' => 255],
+            [['kus_id', 'vkus_id', 'sert_id', 'fio'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,10 +44,17 @@ class InRelative extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'reg_num' => Yii::t('app', 'Reg Num'),
+            'kus_id' => Yii::t('app', 'Kus ID'),
+            'vkus_id' => Yii::t('app', 'Vkus ID'),
+            'sert_id' => Yii::t('app', 'Sert ID'),
             'type_relative' => Yii::t('app', 'Type Relative'),
             'fio' => Yii::t('app', 'Fio'),
             'address' => Yii::t('app', 'Address'),
         ];
+    }
+
+    public function getTyperelative()
+    {
+        return $this->hasOne(TypeRelative::className(), ['id' => 'type_relative']);
     }
 }

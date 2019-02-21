@@ -29,10 +29,9 @@ class OutRelative extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['reg_num', 'type_relative', 'fio', 'address'], 'required'],
             [['type_relative'], 'integer'],
             [['address'], 'string'],
-            [['reg_num', 'fio'], 'string', 'max' => 255],
+            [['kus_id','vkus_id','fio'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,10 +42,14 @@ class OutRelative extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'reg_num' => Yii::t('app', 'Reg Num'),
             'type_relative' => Yii::t('app', 'Type Relative'),
             'fio' => Yii::t('app', 'Fio'),
             'address' => Yii::t('app', 'Address'),
         ];
+    }
+
+    public function getTyperelative()
+    {
+        return $this->hasOne(TypeRelative::className(), ['id' => 'type_relative']);
     }
 }

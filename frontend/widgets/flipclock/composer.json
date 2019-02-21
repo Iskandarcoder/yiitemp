@@ -1,0 +1,21 @@
+{
+    "name": "spevv/yii2-flipclock",
+    "description": "Wrapper of FlipClock for Yii2.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "spevv",
+            "email": "developer.awam@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "spevv\\flipclock\\": ""
+        }
+    }
+}

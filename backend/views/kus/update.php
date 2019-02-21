@@ -10,12 +10,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Kuses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="kus-update">
+<div class="page-container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <center><h1><?= Html::encode('Tahrirlash') ?></h1></center>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelInrelative' => $modelInrelative,
+        'modelOutrelative' => $modelOutrelative,
     ]) ?>
 
 </div>
